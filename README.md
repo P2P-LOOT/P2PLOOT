@@ -4,8 +4,8 @@ Este repositório funciona como ponto central do projeto P2P Loot na organizaç�
 
 ## Repositórios relacionados
 
-- **Frontend:** https://github.com/Bianca-campolongo/p2ploot-frontend
-- **Backend:** https://github.com/Bianca-campolongo/p2ploot-backend
+- **Frontend:** https://github.com/Bianca-campolongo/p2ploot-frontend/tree/teste
+- **Backend:** https://github.com/Bianca-campolongo/p2ploot-backend/tree/teste
 
 ## Organização temporária
 
