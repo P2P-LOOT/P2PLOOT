@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="920" viewBox="0 0 1280 920" role="img" aria-labelledby="title desc">
+  <title id="title">Relatório de Manutenibilidade do Frontend - visão geral</title>
+  <desc id="desc">Resumo visual da investigação do frontend P2PLOOT com métricas, conclusão executiva e arquivos mais complexos.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .bg { fill: #0d1117; }
+    .panel { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .panel2 { fill: #0f1623; stroke: #30363d; stroke-width: 1; }
+    .title { fill: #f0f6fc; font-size: 30px; font-weight: 750; }
+    .h2 { fill: #f0f6fc; font-size: 20px; font-weight: 700; }
+    .label { fill: #8b949e; font-size: 13px; }
+    .body { fill: #c9d1d9; font-size: 15px; }
+    .small { fill: #8b949e; font-size: 12px; }
+    .metric { fill: #f0f6fc; font-size: 28px; font-weight: 750; }
+    .danger { fill: #ff7b72; }
+    .warning { fill: #d29922; }
+    .info { fill: #58a6ff; }
+    .success { fill: #3fb950; }
+    .bar { fill: #d29922; }
+    .bar2 { fill: #8957e5; }
+    .line { stroke: #30363d; stroke-width: 1; }
+  </style>
+
+  <rect class="bg" x="0" y="0" width="1280" height="920" />
+
+  <rect class="panel" x="40" y="36" width="1200" height="150" rx="12" />
+  <text class="small warning" x="66" y="70">Investigação de arquitetura · Frontend React/Vite · Snapshot: 7 mai 2026</text>
+  <text class="title" x="66" y="112">Relatório de Manutenibilidade do Frontend</text>
+  <text class="body" x="66" y="148">A hipótese se confirma: o frontend não parece difícil por um problema pontual de ferramenta, mas por concentração</text>
+  <text class="body" x="66" y="170">de responsabilidade, estado espalhado e padrões pouco protegidos por lint/testes.</text>
+
+  <g transform="translate(40,214)">
+    <rect class="panel2" x="0" y="0" width="224" height="108" rx="10" />
+    <text class="metric info" x="20" y="45">24.949</text>
+    <text class="label" x="20" y="76">linhas em src</text>
+  </g>
+  <g transform="translate(284,214)">
+    <rect class="panel2" x="0" y="0" width="224" height="108" rx="10" />
+    <text class="metric danger" x="20" y="45">7</text>
+    <text class="label" x="20" y="76">arquivos &gt; 1000 linhas</text>
+  </g>
+  <g transform="translate(528,214)">
+    <rect class="panel2" x="0" y="0" width="224" height="108" rx="10" />
+    <text class="metric warning" x="20" y="45">463</text>
+    <text class="label" x="20" y="76">ocorrências de useState</text>
+  </g>
+  <g transform="translate(772,214)">
+    <rect class="panel2" x="0" y="0" width="224" height="108" rx="10" />
+    <text class="metric warning" x="20" y="45">181</text>
+    <text class="label" x="20" y="76">chamadas api.</text>
+  </g>
+  <g transform="translate(1016,214)">
+    <rect class="panel2" x="0" y="0" width="224" height="108" rx="10" />
+    <text class="metric danger" x="20" y="45">falha</text>
+    <text class="label" x="20" y="76">npm run lint</text>
+  </g>
+
+  <rect class="panel" x="40" y="352" width="1200" height="82" rx="10" />
+  <text class="h2 danger" x="66" y="386">Conclusão executiva</text>
+  <text class="body" x="66" y="416">O maior risco para mudanças futuras é a combinação de componentes grandes demais, dados remotos acoplados à UI,</text>
+  <text class="body" x="66" y="436">uma fachada API única e ausência de lint/testes funcionando.</text>
+
+  <rect class="panel" x="40" y="466" width="580" height="400" rx="10" />
+  <text class="h2" x="66" y="504">Distribuição de complexidade por arquivo</text>
+  <text class="small" x="66" y="528">Top 8 arquivos por linhas</text>
+
+  <g transform="translate(66,560)">
+    <text class="small" x="0" y="15">GuildAuctionSection</text>
+    <rect class="bar" x="170" y="2" width="360" height="18" rx="4" />
+    <text class="small" x="538" y="16">2403</text>
+
+    <text class="small" x="0" y="55">Web3GamesPage</text>
+    <rect class="bar" x="170" y="42" width="260" height="18" rx="4" />
+    <text class="small" x="438" y="56">1736</text>
+
+    <text class="small" x="0" y="95">GuildManagement</text>
+    <rect class="bar" x="170" y="82" width="222" height="18" rx="4" />
+    <text class="small" x="400" y="96">1479</text>
+
+    <text class="small" x="0" y="135">AdDetailsModal</text>
+    <rect class="bar" x="170" y="122" width="221" height="18" rx="4" />
+    <text class="small" x="399" y="136">1476</text>
+
+    <text class="small" x="0" y="175">UserProfilePage</text>
+    <rect class="bar" x="170" y="162" width="216" height="18" rx="4" />
+    <text class="small" x="394" y="176">1442</text>
+
+    <text class="small" x="0" y="215">GuildDkpModals</text>
+    <rect class="bar2" x="170" y="202" width="202" height="18" rx="4" />
+    <text class="small" x="380" y="216">1347</text>
+
+    <text class="small" x="0" y="255">AdminDashboard</text>
+    <rect class="bar2" x="170" y="242" width="193" height="18" rx="4" />
+    <text class="small" x="371" y="256">1289</text>
+
+    <text class="small" x="0" y="295">api.js</text>
+    <rect class="bar2" x="170" y="282" width="128" height="18" rx="4" />
+    <text class="small" x="306" y="296">851</text>
+  </g>
+
+  <rect class="panel" x="660" y="466" width="580" height="400" rx="10" />
+  <text class="h2" x="686" y="504">Sinais quantitativos</text>
+
+  <g transform="translate(686,536)">
+    <rect class="panel2" x="0" y="0" width="248" height="132" rx="8" />
+    <text class="body" x="16" y="30">Arquivos grandes</text>
+    <text class="small" x="16" y="58">13 arquivos têm mais de 500 linhas;</text>
+    <text class="small" x="16" y="78">7 passam de 1000. Isso concentra</text>
+    <text class="small" x="16" y="98">mudanças e aumenta conflitos.</text>
+
+    <rect class="panel2" x="278" y="0" width="248" height="132" rx="8" />
+    <text class="body" x="294" y="30">Estado local espalhado</text>
+    <text class="small" x="294" y="58">463 useState em 73 arquivos, com</text>
+    <text class="small" x="294" y="78">páginas chegando a 43 estados no</text>
+    <text class="small" x="294" y="98">mesmo componente.</text>
+
+    <rect class="panel2" x="0" y="160" width="248" height="132" rx="8" />
+    <text class="body" x="16" y="190">Persistência no componente</text>
+    <text class="small" x="16" y="218">41 usos de localStorage e 3 de</text>
+    <text class="small" x="16" y="238">sessionStorage, inclusive dentro</text>
+    <text class="small" x="16" y="258">de componentes de rota.</text>
+
+    <rect class="panel2" x="278" y="160" width="248" height="132" rx="8" />
+    <text class="body" x="294" y="190">API sem limite de domínio</text>
+    <text class="small" x="294" y="218">181 chamadas api. no src,</text>
+    <text class="small" x="294" y="238">consumidas diretamente por</text>
+    <text class="small" x="294" y="258">páginas e modais.</text>
+  </g>
+</svg>

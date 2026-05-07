@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1120" viewBox="0 0 1280 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Relatório de Manutenibilidade do Frontend - achados e plano</title>
+  <desc id="desc">Resumo visual dos achados priorizados e do roteiro recomendado para estabilização e refatoração do frontend.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .bg { fill: #0d1117; }
+    .panel { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .panel2 { fill: #0f1623; stroke: #30363d; stroke-width: 1; }
+    .title { fill: #f0f6fc; font-size: 28px; font-weight: 750; }
+    .h2 { fill: #f0f6fc; font-size: 20px; font-weight: 700; }
+    .h3 { fill: #f0f6fc; font-size: 15px; font-weight: 700; }
+    .body { fill: #c9d1d9; font-size: 14px; }
+    .small { fill: #8b949e; font-size: 12px; }
+    .danger { fill: #ff7b72; }
+    .warning { fill: #d29922; }
+    .info { fill: #58a6ff; }
+    .success { fill: #3fb950; }
+    .pillDanger { fill: #2d1518; stroke: #ff7b72; }
+    .pillWarning { fill: #2b2111; stroke: #d29922; }
+    .pillInfo { fill: #11253b; stroke: #58a6ff; }
+    .pillNeutral { fill: #1f2937; stroke: #8b949e; }
+    .line { stroke: #30363d; stroke-width: 1; }
+  </style>
+
+  <rect class="bg" x="0" y="0" width="1280" height="1120" />
+
+  <rect class="panel" x="40" y="36" width="1200" height="96" rx="12" />
+  <text class="title" x="66" y="76">Achados Priorizados e Plano de Refatoração</text>
+  <text class="body" x="66" y="108">Resumo visual do que torna alterações simples mais difíceis no frontend e a ordem recomendada para corrigir sem criar uma refatoração arriscada.</text>
+
+  <text class="h2" x="40" y="178">Achados priorizados</text>
+
+  <g transform="translate(40,204)">
+    <rect class="panel" x="0" y="0" width="580" height="116" rx="10" />
+    <rect class="pillDanger" x="20" y="18" width="70" height="24" rx="12" />
+    <text class="small danger" x="36" y="34">Crítico</text>
+    <text class="h3" x="20" y="66">Componentes monolíticos concentram fluxo inteiro</text>
+    <text class="small" x="20" y="92">Sete arquivos passam de 1000 linhas; `GuildAuctionSection.jsx` chega a 2403.</text>
+
+    <rect class="panel" x="620" y="0" width="580" height="116" rx="10" />
+    <rect class="pillWarning" x="640" y="18" width="55" height="24" rx="12" />
+    <text class="small warning" x="656" y="34">Alto</text>
+    <text class="h3" x="640" y="66">`api.js` virou um ponto único grande demais</text>
+    <text class="small" x="640" y="92">851 linhas com métodos de auth, perfil, guild, leilões, jogos, eventos e admin.</text>
+
+    <rect class="panel" x="0" y="142" width="580" height="116" rx="10" />
+    <rect class="pillWarning" x="20" y="160" width="55" height="24" rx="12" />
+    <text class="small warning" x="36" y="176">Alto</text>
+    <text class="h3" x="20" y="208">UI, estado, persistência e API estão misturados</text>
+    <text class="small" x="20" y="234">Páginas e modais fazem renderização e orquestração de dados no mesmo nível.</text>
+
+    <rect class="panel" x="620" y="142" width="580" height="116" rx="10" />
+    <rect class="pillWarning" x="640" y="160" width="55" height="24" rx="12" />
+    <text class="small warning" x="656" y="176">Alto</text>
+    <text class="h3" x="640" y="208">Bug real escondido pela falta de lint</text>
+    <text class="small" x="640" y="234">`GameCard` usa `i18n.language` sem `i18n` no escopo; risco de runtime.</text>
+
+    <rect class="panel" x="0" y="284" width="580" height="116" rx="10" />
+    <rect class="pillInfo" x="20" y="302" width="62" height="24" rx="12" />
+    <text class="small info" x="36" y="318">Médio</text>
+    <text class="h3" x="20" y="350">Padrões de rede e importação são inconsistentes</text>
+    <text class="small" x="20" y="376">`fetch` direto convive com `api`; alias `@` existe no Vite mas não é usado em `src`.</text>
+
+    <rect class="panel" x="620" y="284" width="580" height="116" rx="10" />
+    <rect class="pillInfo" x="640" y="302" width="62" height="24" rx="12" />
+    <text class="small info" x="656" y="318">Médio</text>
+    <text class="h3" x="640" y="350">Migração incompleta e código morto</text>
+    <text class="small" x="640" y="376">Supabase segue instalado/comentado; `MercadoPage.jsx` existe mas não aparece nas rotas.</text>
+
+    <rect class="panel" x="0" y="426" width="580" height="116" rx="10" />
+    <rect class="pillInfo" x="20" y="444" width="62" height="24" rx="12" />
+    <text class="small info" x="36" y="460">Médio</text>
+    <text class="h3" x="20" y="492">i18n centralizado e idioma padrão desalinhado</text>
+    <text class="small" x="20" y="518">`fallbackLng: en`, raiz vai para `/pt`, traduções têm cerca de 1450 linhas por idioma.</text>
+
+    <rect class="panel" x="620" y="426" width="580" height="116" rx="10" />
+    <rect class="pillNeutral" x="640" y="444" width="76" height="24" rx="12" />
+    <text class="small" x="655" y="460">Processo</text>
+    <text class="h3" x="640" y="492">Tooling não protege alterações futuras</text>
+    <text class="small" x="640" y="518">Sem testes encontrados; `npm run lint` falha por ausência de config ESLint.</text>
+  </g>
+
+  <text class="h2" x="40" y="798">Roteiro recomendado</text>
+  <rect class="panel" x="40" y="824" width="1200" height="238" rx="10" />
+
+  <g transform="translate(72,854)">
+    <circle cx="10" cy="10" r="10" fill="#ff7b72" />
+    <text class="small" x="7" y="14" fill="#0d1117">0</text>
+    <text class="h3" x="36" y="15">Estabilizar agora</text>
+    <text class="small" x="36" y="38">Configurar ESLint, corrigir `i18n` de `GameCard`, decidir `MercadoPage.jsx` e limpar Supabase.</text>
+
+    <circle cx="10" cy="70" r="10" fill="#d29922" />
+    <text class="small" x="7" y="74" fill="#0d1117">1</text>
+    <text class="h3" x="36" y="75">Quebrar por domínio</text>
+    <text class="small" x="36" y="98">Separar `api.js` em `auth`, `profile`, `guild`, `market`, `events`, `admin`, mantendo `request()` comum.</text>
+
+    <circle cx="10" cy="130" r="10" fill="#d29922" />
+    <text class="small" x="7" y="134" fill="#0d1117">2</text>
+    <text class="h3" x="36" y="135">Extrair hooks de dados</text>
+    <text class="small" x="36" y="158">Criar `useGuildAuctions`, `useProfileAds`, `useAdminModerators`, `useGameDetails` e similares.</text>
+  </g>
+
+  <g transform="translate(682,854)">
+    <circle cx="10" cy="10" r="10" fill="#58a6ff" />
+    <text class="small" x="7" y="14" fill="#0d1117">3</text>
+    <text class="h3" x="36" y="15">Fatiar páginas grandes</text>
+    <text class="small" x="36" y="38">Extrair filtros, listas, modais, cards e reducers antes de qualquer redesign visual.</text>
+
+    <circle cx="10" cy="70" r="10" fill="#58a6ff" />
+    <text class="small" x="7" y="74" fill="#0d1117">4</text>
+    <text class="h3" x="36" y="75">Reorganizar rotas e i18n</text>
+    <text class="small" x="36" y="98">Mover páginas Web3 detalhadas, alinhar default `pt`/`en` e considerar namespaces por feature.</text>
+
+    <circle cx="10" cy="130" r="10" fill="#3fb950" />
+    <text class="small" x="7" y="134" fill="#0d1117">5</text>
+    <text class="h3" x="36" y="135">Adicionar testes mínimos</text>
+    <text class="small" x="36" y="158">Smoke tests de rotas críticas e unitários para `request()`, permissões, formatadores e reducers.</text>
+  </g>
+
+  <text class="small" x="40" y="1094">Nota: SVG estático gerado a partir do relatório canvas; a renderização interativa original continua disponível apenas no Cursor.</text>
+</svg>
