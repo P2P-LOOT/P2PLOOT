@@ -1,0 +1,6 @@
+[submodule "p2ploot-backend"]
+	path = p2ploot-backend
+	url = git@github.com:Bianca-campolongo/p2ploot-backend.git
+[submodule "p2ploot-frontend"]
+	path = p2ploot-frontend
+	url = git@github.com:Bianca-campolongo/p2ploot-frontend.git
