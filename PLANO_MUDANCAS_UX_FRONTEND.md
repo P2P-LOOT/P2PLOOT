@@ -21,32 +21,36 @@ Aplicar correcoes de UX no frontend para melhorar clareza de feedback, reduzir f
 
 ## Checklist de Execucao
 
-- [x] Ajustar dismiss de notificacao por clique e persistencia em `localStorage`
-- [x] Evitar reexibicao de notificacoes no polling
-- [x] Implementar auto-close do dropdown de notificacoes fora de hover/foco
-- [x] Adicionar painel de status de processo e validacao no modal de anuncio
-- [x] Reestruturar layout do modal de anuncio para reduzir verticalizacao
-- [x] Padronizar estilo de scrollbar via utilitario global `.custom-scrollbar`
-- [x] Ajustar tipografia/overflow da hero para eliminar corte visual do titulo
-- [x] Validar comportamento em PT/EN, desktop/mobile
+- Ajustar dismiss de notificacao por clique e persistencia em `localStorage`
+- Evitar reexibicao de notificacoes no polling
+- Implementar auto-close do dropdown de notificacoes fora de hover/foco
+- Adicionar painel de status de processo e validacao no modal de anuncio
+- Reestruturar layout do modal de anuncio para reduzir verticalizacao
+- Padronizar estilo de scrollbar via utilitario global `.custom-scrollbar`
+- Ajustar tipografia/overflow da hero para eliminar corte visual do titulo
+- Validar comportamento em PT/EN, desktop/mobile
 
 ## Criterios de Aceite
 
 ### Notificacoes
+
 - Clique em notificacao de usuario remove o card da lista atual.
 - Notificacao clicada nao reaparece no proximo polling enquanto estiver marcada como dispensada.
 - Dropdown desktop fecha automaticamente quando perde hover/foco por um intervalo curto.
 
 ### Feedback de Processo
+
 - Usuario visualiza claramente o status atual (ocioso, enviando imagem, publicando anuncio, sincronizando perfil).
 - Antes de submeter, pendencias obrigatorias ficam visiveis no proprio modal.
 - Botao de envio evita acao duplicada durante processamento.
 
 ### Modais e Scrollbars
+
 - Scrollbar interna usa estilo padronizado e discreto.
 - Modal de anuncio apresenta menos rolagem vertical em viewport media/grande.
 
 ### Hero Section
+
 - Texto principal nao apresenta clipping/corte em PT e EN.
 - Efeitos visuais de fundo nao cortam o conteudo textual.
 
@@ -81,20 +85,20 @@ Aplicar correcoes de UX no frontend para melhorar clareza de feedback, reduzir f
 
 ### Dispositivos
 
-- [ ] Desktop (1366x768 ou maior): abrir e interagir com notificacoes, modal de anuncio e home.
-- [ ] Tablet (768x1024): validar rolagem de modal e legibilidade da hero.
-- [ ] Mobile (390x844): validar drawer de notificacoes e fluxo de criacao de anuncio.
+- Desktop (1366x768 ou maior): abrir e interagir com notificacoes, modal de anuncio e home.
+- Tablet (768x1024): validar rolagem de modal e legibilidade da hero.
+- Mobile (390x844): validar drawer de notificacoes e fluxo de criacao de anuncio.
 
 ### Idiomas
 
-- [ ] PT-BR: conferir textos de status, pendencias e hero sem corte visual.
-- [ ] EN: repetir validacao para garantir ausencia de clipping no titulo da hero.
+- PT-BR: conferir textos de status, pendencias e hero sem corte visual.
+- EN: repetir validacao para garantir ausencia de clipping no titulo da hero.
 
 ### Fluxos Criticos
 
-- [ ] Notificacao de usuario: clicar, remover card da lista e confirmar que nao reaparece no polling seguinte.
-- [ ] Notificacao desktop: confirmar fechamento automatico ao sair de hover/foco.
-- [ ] Criar anuncio: validar painel de status em upload, envio e sincronizacao de perfil.
-- [ ] Criar anuncio com erro: confirmar exibicao de pendencias e bloqueio de submit invalido.
-- [ ] Modais com rolagem: verificar scrollbar discreta e consistente.
-- [ ] Hero section: conferir titulo completo sem corte em breakpoints principais.
+- Notificacao de usuario: clicar, remover card da lista e confirmar que nao reaparece no polling seguinte.
+- Notificacao desktop: confirmar fechamento automatico ao sair de hover/foco.
+- Criar anuncio: validar painel de status em upload, envio e sincronizacao de perfil.
+- Criar anuncio com erro: confirmar exibicao de pendencias e bloqueio de submit invalido.
+- Modais com rolagem: verificar scrollbar discreta e consistente.
+- Hero section: conferir titulo completo sem corte em breakpoints principais.
