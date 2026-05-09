@@ -39,6 +39,13 @@ A motivação principal é reduzir arquivos monolíticos, separar responsabilida
    - Documentar a intenção de cada extração.
    - Evitar misturar UI, regra de negócio, chamada de API e transformação de dados no mesmo arquivo.
 
+6. **Manter evidência visual auditável**
+   - Todo incremento que afete frontend, visualização ou UX deve registrar prints comparativos.
+   - Capturar o estado **antes** e **depois** usando a mesma rota, usuário, dados e viewport sempre que possível.
+   - Quando o incremento for uma refatoração sem mudança visual esperada, os prints devem demonstrar equivalência visual.
+   - Quando houver mudança de fluxo ou interação, registrar também estados relevantes, como modal aberto, loading, erro, sucesso, empty state e responsivo/mobile quando aplicável.
+   - Guardar os arquivos em `docs/evidencias/frontend/incremento-N-nome-curto/` ou informar explicitamente no documento se os prints ainda estão pendentes.
+
 ## Estado inicial relevante
 
 O arquivo `src/components/Web3Games/Web3GamesPage.jsx` concentrava múltiplas responsabilidades em um único bloco grande, incluindo:
@@ -244,6 +251,52 @@ As responsabilidades de formulário, upload de imagem, regiões/servidores e aç
 - `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso após a extração de componentes.
 - `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso após a extração do hook.
 
+### Evidências visuais
+
+Status: documentado com o estado atual pós-incremento.
+
+Não foi possível recuperar prints históricos das iterações anteriores. Por isso, esta seção registra o estado visual atual do `EditGameModal` após a conclusão do Incremento 2, usando dados demonstrativos para permitir revisão visual e auditoria posterior.
+
+Contexto validado:
+
+- Área: modal de edição de jogo (`EditGameModal`).
+- Estado: modal aberto em modo de edição.
+- Dados: jogo demonstrativo `Guild of Guardians`, com imagem, campos textuais, regiões e servidores.
+- Viewports: desktop e mobile.
+- Observação: os prints documentam somente o estado atual pós-refatoração, não uma comparação visual histórica antes/depois.
+
+Prints:
+
+#### Desktop — topo do modal
+
+![Incremento 2 - EditGameModal desktop topo](docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-desktop-topo.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-desktop-topo.png`
+
+#### Desktop — final do modal
+
+![Incremento 2 - EditGameModal desktop final](docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-desktop-final.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-desktop-final.png`
+
+#### Mobile — topo do modal
+
+![Incremento 2 - EditGameModal mobile topo](docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-mobile-topo.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-mobile-topo.png`
+
+#### Mobile — final do modal
+
+![Incremento 2 - EditGameModal mobile final](docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-mobile-final.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-2-edit-game-modal/estado-atual-edit-game-modal-mobile-final.png`
+
+Critério visual:
+
+- O modal deve exibir campos de imagem, upload, URL, dados básicos do jogo, descrições, requisitos, informações NFT, regiões/servidores e ações finais.
+- Como não há prints anteriores disponíveis, a validação visual retroativa fica limitada à revisão do estado atual documentado.
+- Para os próximos incrementos, a documentação deve conter prints comparativos antes/depois capturados durante a iteração.
+
 ### Contratos preservados
 
 - Nenhuma mudança no contrato de `api.updateGame`.
@@ -251,23 +304,138 @@ As responsabilidades de formulário, upload de imagem, regiões/servidores e aç
 - Nenhuma mudança no contrato de `api.uploadImage`.
 - Nenhuma mudança esperada nas props públicas de `EditGameModal`.
 
+## Incremento 3 concluído: aproximação entre `AddGameModal.jsx` e `EditGameModal.jsx`
+
+### Resumo
+
+O `AddGameModal.jsx` foi reduzido para atuar como shell/orquestrador do fluxo de criação.
+
+A lógica comum de formulário, upload de imagem e regiões/servidores foi aproximada do fluxo de edição, mantendo os contratos públicos dos modais e das chamadas de API.
+
+### Componentes e módulos criados
+
+- `src/components/Web3Games/components/form/AddGameFormFields.jsx`
+  - campos principais do cadastro de jogo;
+  - nome, gênero, modo, blockchain, token e status.
+
+- `src/components/Web3Games/components/form/AddGameTextDetailsFields.jsx`
+  - descrição curta;
+  - detalhes completos;
+  - requisitos de sistema.
+
+- `src/components/Web3Games/components/form/gameFormOptions.js`
+  - opções compartilhadas de gêneros;
+  - opções compartilhadas de status.
+
+- `src/components/Web3Games/hooks/useGameForm.js`
+  - estado base de formulário;
+  - handler de mudança de campos;
+  - upload de imagem;
+  - manipulação de regiões e servidores.
+
+- `src/components/Web3Games/hooks/useAddGameForm.js`
+  - estado de loading de criação;
+  - submit via `api.createGame`;
+  - reset do formulário após criação bem-sucedida.
+
+### Reutilizações aplicadas
+
+- `AddGameModal.jsx` passou a reutilizar `GameImageUploadField`.
+- `AddGameModal.jsx` passou a reutilizar `ServerRegionsEditor`.
+- `useEditGameForm.js` passou a reutilizar `useGameForm.js` para lógica comum.
+- `EditGameFormFields.jsx` passou a usar `gameFormOptions.js` para evitar listas duplicadas.
+- `GameImageUploadField.jsx` ganhou parâmetros de layout com defaults compatíveis com o modal de edição, permitindo preservar o layout vertical usado no modal de criação.
+
+### Commit do incremento
+
+- `refactor(web3games): share add and edit game form logic` (`d0a1fac`)
+
+### Validação
+
+- `git diff --check` executado com sucesso.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Observação: o build manteve os avisos já conhecidos de Rollup sobre anotações `/*#__PURE__*/` em dependências de terceiros.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: modal de cadastro de jogo (`AddGameModal`).
+- Estado: modal aberto em modo de criação, com formulário inicial vazio.
+- Fonte do antes: `refs/remotes/origin/teste`, capturado em worktree temporária.
+- Fonte do depois: branch do Incremento 3 `feat/web3games-add-edit-form-increment-3`.
+- Rota/harness: `__add_game_modal_evidence__.html` servindo o modal isolado via Vite.
+- Perfil/usuário: não aplicável; captura isolada do modal sem autenticação.
+- Viewports: desktop `1440x1200` e mobile `390x1000`.
+- Estados capturados: topo do modal e final do modal após scroll interno.
+
+Prints:
+
+#### Antes — desktop, topo do modal
+
+![Incremento 3 - AddGameModal antes desktop topo](docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-desktop-topo.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-desktop-topo.png`
+
+#### Depois — desktop, topo do modal
+
+![Incremento 3 - AddGameModal depois desktop topo](docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-desktop-topo.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-desktop-topo.png`
+
+#### Antes — desktop, final do modal
+
+![Incremento 3 - AddGameModal antes desktop final](docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-desktop-final.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-desktop-final.png`
+
+#### Depois — desktop, final do modal
+
+![Incremento 3 - AddGameModal depois desktop final](docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-desktop-final.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-desktop-final.png`
+
+#### Antes — mobile, topo do modal
+
+![Incremento 3 - AddGameModal antes mobile topo](docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-mobile-topo.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-mobile-topo.png`
+
+#### Depois — mobile, topo do modal
+
+![Incremento 3 - AddGameModal depois mobile topo](docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-mobile-topo.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-mobile-topo.png`
+
+#### Antes — mobile, final do modal
+
+![Incremento 3 - AddGameModal antes mobile final](docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-mobile-final.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/antes-add-game-modal-mobile-final.png`
+
+#### Depois — mobile, final do modal
+
+![Incremento 3 - AddGameModal depois mobile final](docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-mobile-final.png)
+
+Arquivo: `docs/evidencias/frontend/incremento-3-add-edit-game-form/depois-add-game-modal-mobile-final.png`
+
+Critério visual:
+
+- A refatoração buscou preservar a experiência visual do modal de criação.
+- As capturas antes/depois devem manter layout, campos e ações finais equivalentes em desktop e mobile.
+- Qualquer diferença visual esperada deve ser limitada à implementação compartilhada do componente de upload, sem alteração intencional de fluxo.
+
+### Contratos preservados
+
+- Nenhuma mudança no contrato de `api.createGame`.
+- Nenhuma mudança no contrato de `api.uploadImage`.
+- Nenhuma mudança no contrato de `api.updateGame`.
+- Nenhuma mudança esperada nas props públicas de `AddGameModal`.
+- Nenhuma mudança esperada nas props públicas de `EditGameModal`.
+
 ## Próximos incrementos recomendados
-
-### Incremento 3: aproximar `AddGameModal.jsx` e `EditGameModal.jsx`
-
-Motivo: os dois modais tendem a ter campos, upload e regiões/servidores semelhantes.
-
-Ações recomendadas:
-
-- Extrair componentes compartilhados para `Web3Games/components/form/`.
-- Reutilizar `GameImageUploadField`.
-- Reutilizar `ServerRegionsEditor`.
-- Avaliar um hook base `useGameForm` com modos `create` e `edit`.
-
-Critério de sucesso:
-
-- Redução de duplicidade visual e lógica.
-- Fluxos de criação e edição preservados.
 
 ### Incremento 4: extrair lógica de filtros do catálogo
 
@@ -365,13 +533,11 @@ Critério de sucesso:
 
 ## Ordem sugerida de execução
 
-1. Modularizar `EditGameModal.jsx`.
-2. Reutilizar partes entre `AddGameModal.jsx` e `EditGameModal.jsx`.
-3. Extrair filtros e seções de `Web3GamesHome.jsx`.
-4. Modularizar seção de comentários em `GameDetailsPage.jsx`.
-5. Modularizar hero/dados técnicos da página de detalhes.
-6. Modularizar blocos menores da página de blockchain.
-7. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
+1. Extrair filtros e seções de `Web3GamesHome.jsx`.
+2. Modularizar seção de comentários em `GameDetailsPage.jsx`.
+3. Modularizar hero/dados técnicos da página de detalhes.
+4. Modularizar blocos menores da página de blockchain.
+5. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
 
 ## Checklist por incremento
 
@@ -380,6 +546,8 @@ Antes de iniciar:
 - Verificar `git status --short`.
 - Confirmar se há arquivos com alterações locais de outro desenvolvedor.
 - Escolher um bloco com fronteira clara.
+- Capturar prints do estado anterior quando o incremento tocar frontend, visualização ou UX.
+- Registrar rota, usuário/perfil, viewport, dados usados e estado da tela nos prints de antes.
 
 Durante a alteração:
 
@@ -388,13 +556,48 @@ Durante a alteração:
 - Preservar imports e exports usados por rotas.
 - Preferir funções puras em `utils` quando possível.
 - Preferir hooks para estado e efeitos.
+- Capturar prints intermediários se houver mudança de fluxo, modal, loading, erro, sucesso ou estado vazio relevante.
 
 Após a alteração:
 
 - Rodar build com `VITE_API_URL` local.
 - Conferir se `dist` não entrou no Git status, caso não seja esperado.
+- Capturar prints do estado final usando o mesmo cenário dos prints de antes.
+- Comparar visualmente antes/depois e registrar se houve preservação visual ou mudança intencional de UX.
 - Registrar arquivos criados/modificados.
 - Atualizar este documento com o incremento concluído.
+- Anexar ou referenciar os prints em uma seção `Evidências visuais` do incremento.
+
+## Template de evidências visuais
+
+Cada incremento com impacto em frontend, visualização ou UX deve incluir uma seção neste formato:
+
+```md
+### Evidências visuais
+
+Contexto validado:
+
+- Rota:
+- Perfil/usuário:
+- Viewport:
+- Dados usados:
+- Estado da tela:
+
+Prints:
+
+- Antes: `docs/evidencias/frontend/incremento-N-nome-curto/antes-descricao.png`
+- Depois: `docs/evidencias/frontend/incremento-N-nome-curto/depois-descricao.png`
+- Estados adicionais:
+  - `docs/evidencias/frontend/incremento-N-nome-curto/estado-adicional.png`
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada; ou
+- Mudança intencional de UX:
+  - o que mudou;
+  - por que mudou;
+  - impacto esperado para validação/auditoria.
+```
 
 ## Comando de validação recomendado
 
