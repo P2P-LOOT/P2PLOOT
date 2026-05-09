@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Análise de Tracks Superteam para o P2P LOOT</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111827;
+      background: #ffffff;
+      font-size: 11px;
+      line-height: 1.42;
+    }
+
+    header {
+      border-bottom: 3px solid #7c3aed;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: #111827;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      margin: 22px 0 10px;
+      color: #1f2937;
+      font-size: 16px;
+      border-left: 5px solid #7c3aed;
+      padding-left: 8px;
+    }
+
+    p {
+      margin: 6px 0;
+    }
+
+    .subtitle {
+      color: #4b5563;
+      font-size: 12px;
+      max-width: 980px;
+    }
+
+    .note {
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin: 12px 0 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-top: 8px;
+      page-break-inside: auto;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
+
+    th {
+      background: #111827;
+      color: #ffffff;
+      text-align: left;
+      padding: 8px;
+      font-size: 10px;
+      vertical-align: top;
+    }
+
+    td {
+      border: 1px solid #e5e7eb;
+      padding: 8px;
+      vertical-align: top;
+      font-size: 9.6px;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+
+    .col-track { width: 18%; }
+    .col-action { width: 25%; }
+    .col-apply { width: 38%; }
+    .col-fit { width: 19%; }
+
+    .priority-table .col-priority { width: 9%; }
+    .priority-table .col-track-priority { width: 31%; }
+    .priority-table .col-reason { width: 60%; }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 7px;
+      font-weight: 700;
+      font-size: 9px;
+      margin-bottom: 4px;
+    }
+
+    .very-high { background: #dcfce7; color: #166534; }
+    .high { background: #dbeafe; color: #1d4ed8; }
+    .medium-high { background: #fef3c7; color: #92400e; }
+    .medium { background: #ede9fe; color: #5b21b6; }
+    .low { background: #fee2e2; color: #991b1b; }
+
+    .summary {
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #f9fafb;
+    }
+
+    .summary strong {
+      color: #111827;
+    }
+
+    footer {
+      margin-top: 18px;
+      color: #6b7280;
+      font-size: 9px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Análise de Tracks Superteam para o P2P LOOT</h1>
+    <p class="subtitle">Comparativo de oportunidades considerando o P2P LOOT como marketplace gamer Web3 com anúncios, chat de negociação, reputação, carteiras, escrow, stablecoins, privacidade e potencial de analytics/growth.</p>
+  </header>
+
+  <section class="note">
+    <strong>Observação:</strong> algumas páginas do Superteam retornaram poucos detalhes além de título, patrocinador, prêmios e skills. Onde faltou descrição completa, a análise foi inferida pelo nome da track, patrocinador e aderência ao contexto do P2P LOOT.
+  </section>
+
+  <h2>Tabela comparativa</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-track">Track</th>
+        <th class="col-action">O que você precisa fazer</th>
+        <th class="col-apply">Como aplicar no P2P LOOT</th>
+        <th class="col-fit">Afinidade com a track</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Privacy Track — Colosseum Hackathon, powered by MagicBlock, ST MY & SNS</strong></td>
+        <td>Criar uma solução Web3 com foco em privacidade, provavelmente usando recursos do ecossistema Solana/MagicBlock/SNS.</td>
+        <td>Evoluir o fluxo de compra segura para negociações privadas: ocultar identidade/wallet do vendedor ou comprador, usar alias/SNS, chat com privacidade, recibos mínimos e metadata reduzida no escrow.</td>
+        <td><span class="badge very-high">Muito alta</span><br>O P2P LOOT já tem marketplace, escrow, chat e sinais de privacidade.</td>
+      </tr>
+      <tr>
+        <td><strong>$50,000 in Security Audit Credits for Frontier Hackathon — Adevar Labs</strong></td>
+        <td>Submeter um projeto que precise de auditoria de segurança, especialmente contratos, escrow, integrações Web3 ou infraestrutura crítica.</td>
+        <td>Buscar créditos de auditoria para escrow, regras de pagamento, assinatura de transações, fluxo de disputa/reembolso e segurança de carteiras.</td>
+        <td><span class="badge high">Alta</span><br>Mais forte se o escrow estiver on-chain real; média se ainda estiver demo/off-chain.</td>
+      </tr>
+      <tr>
+        <td><strong>Build Live dApp with Solflare, Kamino, DFlow, QuickNode or Birdeye on Eitherway</strong></td>
+        <td>Construir uma dApp funcional/live integrando Solflare, Kamino, DFlow, QuickNode ou Birdeye via Eitherway.</td>
+        <td>Checkout/escrow com Solflare, RPC confiável com QuickNode e dados de token/preço com Birdeye para permitir compra de itens gamer com carteira Solana.</td>
+        <td><span class="badge high">Alta</span><br>Combina bem com marketplace, carteira e pagamento.</td>
+      </tr>
+      <tr>
+        <td><strong>Build the Best Benefit. Earn $10K in In-Wallet Brand Activation — theMiracle</strong></td>
+        <td>Criar um benefício de marca para ativação dentro de wallet. A página indica restrição regional para Espanha.</td>
+        <td>Cupom de taxa zero, cashback na primeira compra, badge de vendedor verificado, proteção escrow gratuita ou benefício exclusivo para quem conectar wallet.</td>
+        <td><span class="badge low">Média-baixa</span><br>A ideia combina com growth, mas a restrição regional pode inviabilizar.</td>
+      </tr>
+      <tr>
+        <td><strong>Tether Frontier Hackathon Track</strong></td>
+        <td>Criar uma solução usando Tether/USDT, provavelmente pagamentos, stablecoin, remessas ou liquidação com dólar digital.</td>
+        <td>Adicionar USDT como moeda principal de checkout/escrow para compras internacionais de itens, contas e serviços gamer.</td>
+        <td><span class="badge very-high">Muito alta</span><br>Marketplace P2P precisa de stablecoin; USDT é forte para público global/LatAm.</td>
+      </tr>
+      <tr>
+        <td><strong>Side Track Superteam Brasil</strong></td>
+        <td>Submeter um projeto brasileiro com bom produto, frontend/backend e potencial no ecossistema. Listing regional para Brasil.</td>
+        <td>Posicionar o P2P LOOT como marketplace gamer Web3 brasileiro/global com segurança para compra e venda de ativos digitais de jogos.</td>
+        <td><span class="badge very-high">Muito alta</span><br>Track regional natural para o projeto.</td>
+      </tr>
+      <tr>
+        <td><strong>$10,000 in RPC Infrastructure Credits — RPC Fast</strong></td>
+        <td>Usar ou demonstrar necessidade de infraestrutura RPC Solana confiável para a dApp.</td>
+        <td>Melhorar confirmação de pagamento, leitura de status on-chain, histórico de transações e monitoramento de rede usando RPC dedicado.</td>
+        <td><span class="badge high">Alta</span><br>Boa track complementar para transações Solana reais ou demo consistente.</td>
+      </tr>
+      <tr>
+        <td><strong>100xDevs Frontier Hackathon Track</strong></td>
+        <td>Criar um projeto full-stack/blockchain sólido, com frontend, backend e integração Web3.</td>
+        <td>Apresentar o produto completo: marketplace, perfis, reputação, anúncios, chat, escrow, pagamentos e fluxo de disputa.</td>
+        <td><span class="badge high">Alta</span><br>O produto já é full-stack e tem narrativa forte, mas a track deve ser ampla e concorrida.</td>
+      </tr>
+      <tr>
+        <td><strong>Dune Analytics x Superteam Earn — Frontier Data Sidetrack</strong></td>
+        <td>Criar dashboard ou plano de analytics usando Dune para dados on-chain ou métricas relevantes.</td>
+        <td>Dashboard com GMV, volume por jogo, escrows criados/concluídos, disputas, tempo médio de entrega, wallets ativas e conversão anúncio → chat → compra.</td>
+        <td><span class="badge medium-high">Média-alta</span><br>Útil para credibilidade e growth, mas depende de eventos indexáveis ou dados bem estruturados.</td>
+      </tr>
+      <tr>
+        <td><strong>Cloak Track — Build real world payment solutions with privacy</strong></td>
+        <td>Criar solução real de pagamento com privacidade usando Cloak.</td>
+        <td>Compra segura privada: comprador paga com privacidade, vendedor recebe sem expor wallet pública no anúncio, metadata sensível é minimizada e o escrow mantém prova operacional.</td>
+        <td><span class="badge very-high">Muito alta</span><br>Talvez a melhor afinidade: pagamento P2P + privacidade + risco real de exposição.</td>
+      </tr>
+      <tr>
+        <td><strong>Not Your Regular Bounty — Jupiter</strong></td>
+        <td>Provavelmente construir algo criativo usando produtos/APIs Jupiter no ecossistema Solana.</td>
+        <td>Permitir “pague com qualquer token”: Jupiter faz swap para USDC/USDT/SOL e o vendedor recebe na moeda escolhida.</td>
+        <td><span class="badge medium-high">Média-alta</span><br>Excelente para UX de pagamento, mas precisa confirmar requisitos específicos.</td>
+      </tr>
+      <tr>
+        <td><strong>Build an Autonomous Onchain Agent using the Zerion CLI — Zerion</strong></td>
+        <td>Criar um agente autônomo on-chain usando Zerion CLI. A listing indica restrição regional para Alemanha.</td>
+        <td>Agente para monitorar escrows, alertar comprador/vendedor, detectar pagamento pendente, resumir disputa ou sugerir liberação/reembolso.</td>
+        <td><span class="badge low">Baixa-média</span><br>Útil, mas menos alinhada ao core Solana/P2P LOOT e com restrição regional.</td>
+      </tr>
+      <tr>
+        <td><strong>Build with KIRAPAY</strong></td>
+        <td>Construir uma integração ou caso de uso usando KIRAPAY, provavelmente pagamentos/checkout.</td>
+        <td>Usar KIRAPAY como camada de pagamento para anúncios: links de pagamento, checkout simplificado, recebimento por vendedores e onboarding de usuários não técnicos.</td>
+        <td><span class="badge medium-high">Média-alta</span><br>Boa se KIRAPAY facilitar pagamento real; prêmio menor, mas baixa concorrência pode ajudar.</td>
+      </tr>
+      <tr>
+        <td><strong>SagaPad — Build Agentic Skills helping Colosseum projects win on X</strong></td>
+        <td>Criar skills/agentes de conteúdo para ajudar projetos da Colosseum a crescer no X/Twitter.</td>
+        <td>Agente de growth do P2P LOOT: posts de anúncios, highlights de jogos, threads sobre compra segura, conteúdos para vendedores e respostas para comunidade.</td>
+        <td><span class="badge medium">Média</span><br>Não é core product, mas ajuda em visibilidade e pode virar side submission.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Priorização recomendada</h2>
+  <table class="priority-table">
+    <thead>
+      <tr>
+        <th class="col-priority">Prioridade</th>
+        <th class="col-track-priority">Track</th>
+        <th class="col-reason">Por quê</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td><strong>Cloak Track</strong></td><td>Melhor encaixe com marketplace P2P, pagamento privado, proteção de comprador/vendedor e diferenciação clara.</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>Tether Frontier Hackathon Track</strong></td><td>USDT no checkout/escrow é extremamente aplicável para comércio gamer global.</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>Side Track Superteam Brasil</strong></td><td>Forte alinhamento regional e narrativa natural para um projeto brasileiro.</td></tr>
+      <tr><td><strong>4</strong></td><td><strong>Privacy Track — MagicBlock/ST MY/SNS</strong></td><td>Complementa Cloak com narrativa de privacidade, identidade e alias.</td></tr>
+      <tr><td><strong>5</strong></td><td><strong>Eitherway / Solflare / QuickNode / Birdeye</strong></td><td>Boa para mostrar dApp live com wallet, RPC e dados reais.</td></tr>
+      <tr><td><strong>6</strong></td><td><strong>Adevar Labs Audit Credits</strong></td><td>Importante para credibilidade e segurança se o escrow estiver on-chain.</td></tr>
+      <tr><td><strong>7</strong></td><td><strong>Jupiter</strong></td><td>Excelente melhoria de pagamento: qualquer token convertido para a moeda do vendedor.</td></tr>
+      <tr><td><strong>8</strong></td><td><strong>Dune Analytics</strong></td><td>Ótima camada de métricas para pitch, tração e transparência.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Melhor narrativa para submissão</h2>
+  <section class="summary">
+    <p><strong>“P2P LOOT é um marketplace gamer Web3 com compra segura, escrow em stablecoin e privacidade opcional para compradores e vendedores.”</strong></p>
+    <p>Essa narrativa permite reaproveitar a mesma evolução do produto em várias tracks: Cloak para privacidade nos pagamentos, Tether para USDT, Superteam Brasil para posicionamento regional, MagicBlock/Privacy para identidade e experiência privada, Solflare/QuickNode/Birdeye para dApp live, Adevar para auditoria e Dune para métricas.</p>
+    <p><strong>Resumo:</strong> as tracks com maior afinidade para o P2P LOOT são Cloak, Tether, Superteam Brasil, Privacy/MagicBlock e Eitherway/Solflare/QuickNode/Birdeye.</p>
+  </section>
+
+  <footer>
+    Documento gerado para o projeto P2P LOOT com base nas listings públicas da Superteam Earn analisadas em 09/05/2026.
+  </footer>
+</body>
+</html>
