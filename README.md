@@ -7,6 +7,10 @@ Este repositório funciona como ponto central do projeto P2P Loot na organizaç�
 - **Frontend:** https://github.com/Bianca-campolongo/p2ploot-frontend/tree/teste
 - **Backend:** https://github.com/Bianca-campolongo/p2ploot-backend/tree/teste
 
+## Regras e instruções de trabalho
+
+- **Consulta de regras:** [`regras/CONSULTA_REGRAS.md`](regras/CONSULTA_REGRAS.md)
+
 ## Organização temporária
 
 Frontend e backend permanecem em repositórios separados enquanto a migração para a organização `P2P-LOOT` não é concluída.
