@@ -198,40 +198,60 @@ Durante este incremento, os seguintes arquivos já apareciam modificados no stat
 - `src/components/PlayerMarket/AdDetailsModal.jsx`
 - `src/lib/api.js`
 
-## Próximos incrementos recomendados
+## Incremento 2 concluído: redução de `EditGameModal.jsx`
 
-### Incremento 2: reduzir `EditGameModal.jsx`
+### Resumo
 
-Motivo: após a primeira extração, `EditGameModal.jsx` ainda concentra múltiplas responsabilidades.
+O `EditGameModal.jsx` foi reduzido para atuar como shell/orquestrador visual do modal de edição.
 
-Extrações recomendadas:
+As responsabilidades de formulário, upload de imagem, regiões/servidores e ações assíncronas foram separadas em componentes e hook dedicados dentro da feature `Web3Games`.
 
-- `components/EditGameFormFields.jsx`
+### Componentes criados
+
+- `src/components/Web3Games/components/form/EditGameFormFields.jsx`
   - campos básicos do jogo;
-  - gênero, modo, blockchain, status, token e NFT info.
+  - gênero, modo, blockchain, status, token e NFT info;
+  - descrições, detalhes, requisitos e site oficial.
 
-- `components/GameImageUploadField.jsx`
+- `src/components/Web3Games/components/form/GameImageUploadField.jsx`
   - preview de imagem;
   - upload;
-  - validação de tipo/tamanho;
-  - input manual de URL.
+  - input manual de URL;
+  - estado visual de upload.
 
-- `components/ServerRegionsEditor.jsx`
+- `src/components/Web3Games/components/form/ServerRegionsEditor.jsx`
   - adicionar/remover região;
   - adicionar/remover servidores;
   - renderização de chips por servidor.
 
-- `hooks/useEditGameForm.js`
+### Hook criado
+
+- `src/components/Web3Games/hooks/useEditGameForm.js`
   - estado do formulário;
   - hidratação a partir do jogo selecionado;
   - handlers de mudança;
-  - submit/update/delete/reset.
+  - upload de imagem;
+  - submit/update/delete/reset;
+  - manipulação de regiões e servidores.
 
-Critério de sucesso:
+### Commits do incremento
 
-- `EditGameModal.jsx` ficar apenas como shell/orquestrador.
-- Build continuar passando.
-- Nenhuma mudança no contrato de `api.updateGame`, `api.deleteGame` ou `api.uploadImage`.
+- `refactor(web3games): extract edit game form components`
+- `refactor(web3games): extract edit game form hook`
+
+### Validação
+
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso após a extração de componentes.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso após a extração do hook.
+
+### Contratos preservados
+
+- Nenhuma mudança no contrato de `api.updateGame`.
+- Nenhuma mudança no contrato de `api.deleteGame`.
+- Nenhuma mudança no contrato de `api.uploadImage`.
+- Nenhuma mudança esperada nas props públicas de `EditGameModal`.
+
+## Próximos incrementos recomendados
 
 ### Incremento 3: aproximar `AddGameModal.jsx` e `EditGameModal.jsx`
 
