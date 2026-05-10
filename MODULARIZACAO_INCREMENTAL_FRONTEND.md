@@ -569,24 +569,90 @@ Resultado visual:
 - Nenhuma mudança nas rotas de `Web3Games`.
 - Nenhuma mudança esperada nas props públicas de `Web3GamesHome`, `FilterAccordion` ou `GameCard`.
 
-## Próximos incrementos recomendados
+## Incremento 6 concluído: comentários de jogos
 
-### Incremento 6: comentários de jogos
+### Resumo
 
-Motivo: `GameDetailsPage.jsx` ainda contém layout da seção de comentários e função de formatação de datas.
+A seção de comentários de `GameDetailsPage.jsx` foi extraída para um componente visual dedicado.
 
-Extrações recomendadas:
+A formatação relativa de datas também foi movida para um utilitário reutilizável, mantendo `GameDetailsPage.jsx` mais focado em hero, conteúdo principal, dados técnicos e composição.
 
-- `components/GameCommentsSection.jsx`
+### Arquivos criados
+
+- `src/components/Web3Games/components/GameCommentsSection.jsx`
+  - cabeçalho da seção de comentários;
   - formulário de novo comentário;
   - empty/loading states;
-  - lista de `CommentItem`.
-- `utils/dateFormatters.js`
-  - `formatRelativeDate` com suporte a i18n.
+  - lista de `CommentItem`;
+  - repasse dos handlers de voto, resposta e exclusão.
 
-Critério de sucesso:
+- `src/components/Web3Games/utils/dateFormatters.js`
+  - `formatRelativeDate` com suporte a i18n;
+  - preservação das mensagens relativas já usadas pela tela.
 
-- `GameDetailsPage.jsx` ficar focado em hero, dados técnicos e composição.
+### Arquivos modificados
+
+- `src/components/Web3Games/GameDetailsPage.jsx`
+  - passou a compor `GameCommentsSection`;
+  - removeu layout inline da seção de comentários;
+  - manteve carregamento de jogo, hook de comentários, permissões e sidebar técnica.
+
+### Commits do incremento
+
+- `refactor(web3games): extract game comments section` (`49c4d96`)
+
+### Validação
+
+- `git diff --check` executado com sucesso.
+- Smoke test da função `formatRelativeDate` executado com sucesso via `node --input-type=module`.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: página de detalhes de jogo (`GameDetailsPage`), seção de comentários.
+- Rota: `/pt/games/game/db-4`.
+- Fonte do antes: branch `feat/web3games-comments-increment-6` antes da extração da seção.
+- Fonte do depois: working tree atual após a extração do Incremento 6.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: jogo retornado por `/api/games` com id `4`; comentários em estado vazio/visitante.
+- Viewports: desktop `1440x2200` e mobile `390x2200`.
+- Estados capturados: página de detalhes incluindo hero, conteúdo, sidebar técnica e seção de comentários.
+
+Prints:
+
+#### Antes — desktop
+
+![Incremento 6 - comentários antes desktop](docs/evidencias/frontend/incremento-6-game-comments/antes-game-comments-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 6 - comentários depois desktop](docs/evidencias/frontend/incremento-6-game-comments/depois-game-comments-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 6 - comentários antes mobile](docs/evidencias/frontend/incremento-6-game-comments/antes-game-comments-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 6 - comentários depois mobile](docs/evidencias/frontend/incremento-6-game-comments/depois-game-comments-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre a equivalência da página de detalhes e da seção de comentários em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+- Nenhuma mudança esperada nas props públicas de `CommentItem`.
+
+## Próximos incrementos recomendados
 
 ### Incremento 7: dados técnicos e hero de detalhes
 
@@ -620,10 +686,9 @@ Critério de sucesso:
 
 ## Ordem sugerida de execução
 
-1. Modularizar seção de comentários em `GameDetailsPage.jsx`.
-2. Modularizar hero/dados técnicos da página de detalhes.
-3. Modularizar blocos menores da página de blockchain.
-4. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
+1. Modularizar hero/dados técnicos da página de detalhes.
+2. Modularizar blocos menores da página de blockchain.
+3. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
 
 ## Checklist por incremento
 
