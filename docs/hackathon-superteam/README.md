@@ -48,6 +48,7 @@ Fluxo recomendado:
 - RPC checkout desktop: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-desktop.png`.
 - RPC checkout mobile: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-mobile.png`.
 - Adevar audit scope: `docs/hackathon-superteam/AUDIT_SCOPE_P2PLOOT_ESCROW.md`.
+- Privacy scope: `docs/hackathon-superteam/PRIVACY_TRACK_SCOPE.md`.
 
 ## Limites honestos
 

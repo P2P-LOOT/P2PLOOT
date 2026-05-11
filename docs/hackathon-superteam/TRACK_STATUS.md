@@ -21,6 +21,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Superteam Brasil | `track/superteam-brasil-demo` | `track/superteam-brasil-demo` | criada localmente |
 | RPC live checkout | `track/solana-rpc-live-checkout` | `track/solana-rpc-live-checkout` | criada localmente |
 | Adevar audit package | `track/adevar-audit-package` | `track/adevar-audit-package` | criada localmente |
+| Privacy identity metadata | `track/privacy-identity-metadata` | `track/privacy-identity-metadata` | criada localmente |
 
 ## Ordem inicial de aplicacao
 
@@ -47,6 +48,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Superteam Brasil | ready for demo review | decisao de promocao ou standby |
 | RPC live checkout | ready for promotion decision | decisao de promocao ou standby |
 | Adevar audit package | ready for demo review | testes minimos de permissao/status se houver tempo |
+| Privacy identity metadata | ready for demo review | standby para provider externo |
 
 ## Regras ativas para os proximos PRs
 
@@ -73,6 +75,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | RPC health status | `p2ploot-backend` | `track-inc/solana-rpc-live-checkout/01-rpc-health-status` | `track/solana-rpc-live-checkout` | integrado localmente na branch especial |
 | Checkout RPC health chip | `p2ploot-frontend` | `track-inc/solana-rpc-live-checkout/01-technical-checkout-rpc-chip` | `track/solana-rpc-live-checkout` | integrado localmente na branch especial |
 | Adevar escrow audit scope | root docs | `track-inc/adevar-audit-package/01-escrow-audit-scope` | `track/adevar-audit-package` | documentado no root |
+| Privacy scope via Cloak-ready | root docs | `track-inc/privacy-identity-metadata/01-cloak-ready-scope` | `track/privacy-identity-metadata` | documentado no root |
 
 Validacao do incremento core baseline:
 
@@ -189,6 +192,21 @@ Pendente antes de abrir PR da branch especial para `teste`:
 
 - Decidir se o pacote Adevar entra como documentacao de submissao agora ou fica em standby.
 - Se houver tempo, adicionar smoke/testes minimos focados em permissao e regressao de status terminal.
+
+## Gate atual da track Privacy identity metadata
+
+Cumprido:
+
+- Branches especiais `track/privacy-identity-metadata` criadas nos subrepos e alinhadas com `origin/teste`.
+- Escopo Privacy documentado em `docs/hackathon-superteam/PRIVACY_TRACK_SCOPE.md`.
+- Entrega atual definida como `Privacy via Cloak-ready`, reaproveitando mascaramento e metadata minima ja validados.
+- Limites honestos documentados: sem MagicBlock/SNS, sem identidade nova e sem settlement shielded completo neste incremento.
+- Evidencias Cloak existentes foram apontadas como base da demo Privacy.
+
+Pendente antes de abrir PR da branch especial para `teste`:
+
+- Decidir se a track Privacy entra como demo/documentacao reaproveitando Cloak ou fica em standby.
+- Se houver pedido de MagicBlock/SNS, validar documentacao oficial atual antes de codar qualquer integracao.
 
 Validacao do incremento frontend Tether:
 

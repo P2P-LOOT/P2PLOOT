@@ -12,7 +12,7 @@
 
 | Track | Como reaproveita a demo unica | Condicao antes de submissao forte |
 | --- | --- | --- |
-| Privacy | Usa o mesmo fluxo Cloak-ready para explicar identidade/wallet protegida | Separar o que e mascaramento de UI do que e privacidade criptografica real |
+| Privacy | Usa o mesmo fluxo Cloak-ready para explicar identidade/wallet protegida | Pronta para demo review como Privacy via Cloak-ready; MagicBlock/SNS ficam em standby |
 | RPC / Solflare / QuickNode / Birdeye | Usa status tecnico, wallet e explorer/status do checkout | RPC health pronto; Birdeye/Solflare visual ficam como incrementos separados |
 | Adevar | Usa o fluxo escrow como caso auditavel | Pacote inicial criado em `AUDIT_SCOPE_P2PLOOT_ESCROW.md`; testes minimos ficam como proximo incremento |
 | Dune | Usa eventos de escrow/anuncios como fonte analitica | Definir queries ou export minimo de metricas |
