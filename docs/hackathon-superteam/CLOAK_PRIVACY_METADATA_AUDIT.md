@@ -61,3 +61,18 @@ Essas informacoes continuam disponiveis no endpoint de status/diagnostico, que e
 - Smoke `npm run smoke:cloak` passando com escrow `metadata.cloakPrivacy.enabled: true` e comprador mascarado para vendedor.
 - Evidencia visual de anuncio com vendedor privado e conversa com comprador privado.
 - Confirmar copy de UI para nao prometer privacidade de producao alem do que foi implementado.
+
+## Validacao executada
+
+- `npm run build` no backend: passou.
+- `node --check scripts/smoke-cloak-privacy.js`: passou.
+- `npm run smoke:cloak`: passou contra backend local em `http://localhost:6110`.
+- Evidencia desktop do comprador: `docs/hackathon-superteam/evidences/cloak/cloak-private-buyer-desktop.png`.
+- Evidencia mobile do vendedor: `docs/hackathon-superteam/evidences/cloak/cloak-private-seller-mobile.png`.
+- Auditoria de strings do frontend confirmou copy limitada a identidade publica ocultada/mascarada via Cloak.
+
+## Decisao de gate
+
+A track esta pronta para decisao de promocao ou standby como MVP honesto de privacy intent + mascaramento.
+
+Ela ainda nao deve ser descrita como settlement shielded completo ate existir adapter Cloak real ativado e validado.

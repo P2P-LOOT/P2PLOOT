@@ -41,7 +41,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | --- | --- | --- |
 | Core compartilhado | baseline documented | matriz de envs + extracao modular |
 | Tether | ready for promotion decision | decisao de promocao para `teste` |
-| Cloak | implementing | evidencia visual + smoke metadata |
+| Cloak | ready for promotion decision | decisao de promocao ou standby |
 | Superteam Brasil | standby curto ate demo base | `inc-01-demo-script-and-seed-checklist` |
 
 ## Regras ativas para os proximos PRs
@@ -64,6 +64,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Core baseline/env/status | root docs | `track-inc/superteam-core/01-baseline-env-status` | `track/superteam-core` | documentado no root |
 | Cloak privacy metadata audit | `p2ploot-backend` + root docs | `track-inc/cloak-private-checkout/01-privacy-metadata-audit` | `track/cloak-private-checkout` | integrado localmente na branch especial |
 | Cloak privacy metadata smoke | `p2ploot-backend` | `track-inc/cloak-private-checkout/02-privacy-metadata-smoke` | `track/cloak-private-checkout` | integrado localmente na branch especial |
+| Cloak private checkout evidence | root docs/evidencias | `track-inc/cloak-private-checkout/03-visual-evidence` | `track/cloak-private-checkout` | documentado no root |
 
 Validacao do incremento core baseline:
 
@@ -89,7 +90,35 @@ Validacao do incremento Cloak privacy metadata:
 - `node --check scripts/smoke-cloak-privacy.js`: passou.
 - Parse de `package.json`: passou.
 - `npm run smoke:cloak`: passou com anuncio `Cloak Privacy Smoke QA`, escrow `metadata.cloakPrivacy.enabled: true`, metadata minima sem `devnet`/`disclosure` persistidos e comprador mascarado como `Comprador privado via Cloak` para o vendedor.
-- Validacao final pendente: evidencia visual desktop/mobile do fluxo Cloak privado.
+- Evidencia visual desktop/mobile coletada com fluxo real da UI.
+- Auditoria de copy do frontend confirmou que a UI fala em identidade publica ocultada/mascarada via Cloak e nao promete settlement shielded completo em producao.
+
+Validacao de evidencia visual Cloak:
+
+- Backend local ativo em `http://localhost:6110` na branch `track/cloak-private-checkout`.
+- Frontend local ativo com `VITE_API_URL=http://localhost:6110`.
+- Seed/smoke Cloak gerou anuncio ativo `Cloak Privacy Smoke QA`.
+- Captura desktop do comprador confirmou anuncio com vendedor mascarado como `Vendedor privado via Cloak`.
+- Captura mobile do vendedor confirmou lista de interessados com comprador mascarado como `Comprador privado via Cloak`.
+- Evidencia desktop comprador: `docs/hackathon-superteam/evidences/cloak/cloak-private-buyer-desktop.png`.
+- Evidencia mobile vendedor: `docs/hackathon-superteam/evidences/cloak/cloak-private-seller-mobile.png`.
+
+## Gate atual da track Cloak
+
+Cumprido:
+
+- Backend reduz `metadata.cloakPrivacy` persistida por escrow para metadata operacional minima.
+- Endpoint `GET /api/web3/privacy/status` continua concentrando config, docs e limites da integracao.
+- Smoke real `npm run smoke:cloak` passou contra backend local.
+- Conversa do vendedor mascara comprador privado como `Comprador privado via Cloak`.
+- Anuncio/checkout do comprador mascara vendedor privado como `Vendedor privado via Cloak`.
+- Evidencias visuais desktop/mobile foram coletadas.
+- Copy auditada nao promete settlement shielded UTXO completo; o limite segue documentado como `privacy_intent_ready`.
+
+Pendente antes de abrir PR da branch especial para `teste`:
+
+- Decidir se a track Cloak entra agora em `teste` como MVP de intencao/mascaramento ou se fica em standby aguardando adapter shielded real.
+- Caso entre em `teste`, registrar explicitamente no PR que a entrega garantida e privacy intent + mascaramento, nao settlement shielded completo.
 
 Validacao do incremento frontend Tether:
 
