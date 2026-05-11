@@ -59,6 +59,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | --- | --- | --- | --- | --- |
 | Tether USDT currency parser | `p2ploot-frontend` | `track-inc/tether-usdt-escrow/01-usdt-currency-parser` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Tether USDT smoke coverage | `p2ploot-backend` | `track-inc/tether-usdt-escrow/01-usdt-smoke-coverage` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
+| Tether stablecoin mint resolution | `p2ploot-backend` | `track-inc/tether-usdt-escrow/02-usdt-mint-resolution` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 
 Validacao do incremento frontend Tether:
 
@@ -75,18 +76,27 @@ Validacao do incremento backend Tether:
 - Parse de `package.json`: passou.
 - Smoke real `npm run smoke:web3:tether`: pendente porque exige backend local ativo em `API_BASE`.
 
+Validacao do incremento backend de stablecoin mint:
+
+- `git diff --check` no backend: passou.
+- `npm run build` no backend: passou apos restaurar dependencias locais com `npm install`.
+- Avisos conhecidos: `npm install` reportou vulnerabilidades no grafo existente e o build avisou que `bigint` usou fallback JS puro; nenhum bloqueou a build.
+
 ## Gate atual da track Tether
 
 Cumprido:
 
 - Anuncio/checkout do frontend preserva `ad.currency` e nao troca `USDT` por `USDC` no escrow.
 - Backend aceita e assertivamente testa `currencySymbol: USDT` no caminho smoke parametrizado.
+- Backend resolve `assetMint` por moeda/rede quando o checkout cria escrow sem mint explicito.
+- `.env.example` documenta mints `USDC`/`USDT` por devnet/mainnet, deixando devnet USDT configuravel.
 - Branches especiais locais de frontend e backend foram atualizadas com os incrementos validados.
 
 Pendente antes de marcar `guaranteed`:
 
 - Rodar smoke real com backend local e dados seedados: `npm run smoke:web3:tether`.
 - Capturar evidencia visual desktop/mobile do checkout de anuncio `USDT`.
+- Configurar `SOLANA_DEVNET_USDT_MINT` com mint de demo/teste se a submissao Tether for demonstrada em devnet com SPL token real.
 - Confirmar se a submissao Tether deve ficar em demo/devnet ou seguir para PR de promocao a `teste`.
 
 ## Observacoes de preflight
