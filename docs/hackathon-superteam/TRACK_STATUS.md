@@ -42,7 +42,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Core compartilhado | baseline documented | matriz de envs + extracao modular |
 | Tether | ready for promotion decision | decisao de promocao para `teste` |
 | Cloak | ready for promotion decision | decisao de promocao ou standby |
-| Superteam Brasil | standby curto ate demo base | `inc-01-demo-script-and-seed-checklist` |
+| Superteam Brasil | ready for demo review | decisao de promocao ou standby |
 
 ## Regras ativas para os proximos PRs
 
@@ -65,6 +65,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Cloak privacy metadata audit | `p2ploot-backend` + root docs | `track-inc/cloak-private-checkout/01-privacy-metadata-audit` | `track/cloak-private-checkout` | integrado localmente na branch especial |
 | Cloak privacy metadata smoke | `p2ploot-backend` | `track-inc/cloak-private-checkout/02-privacy-metadata-smoke` | `track/cloak-private-checkout` | integrado localmente na branch especial |
 | Cloak private checkout evidence | root docs/evidencias | `track-inc/cloak-private-checkout/03-visual-evidence` | `track/cloak-private-checkout` | documentado no root |
+| Superteam Brasil demo package | root docs | `track-inc/superteam-brasil-demo/01-demo-script-and-seed-checklist` | `track/superteam-brasil-demo` | documentado no root |
 
 Validacao do incremento core baseline:
 
@@ -119,6 +120,23 @@ Pendente antes de abrir PR da branch especial para `teste`:
 
 - Decidir se a track Cloak entra agora em `teste` como MVP de intencao/mascaramento ou se fica em standby aguardando adapter shielded real.
 - Caso entre em `teste`, registrar explicitamente no PR que a entrega garantida e privacy intent + mascaramento, nao settlement shielded completo.
+
+## Gate atual da track Superteam Brasil
+
+Cumprido:
+
+- Pacote base de submissao criado em `docs/hackathon-superteam/README.md`.
+- Roteiro de video/demo em PT-BR criado em `docs/hackathon-superteam/DEMO_SCRIPT.md`.
+- Matriz de tracks e reaproveitamento criada em `docs/hackathon-superteam/TRACK_MATRIX.md`.
+- Evidencias Tether e Cloak ja coletadas e referenciadas pelo pacote de demo.
+- Escopo permanece enxuto: nenhuma integracao nova foi adicionada so para essa track.
+- Subrepos alternados para `track/superteam-brasil-demo`, ambos alinhados com `origin/teste`.
+
+Pendente antes de abrir PR da branch especial para `teste`:
+
+- Confirmar ambiente final de demo/deploy.
+- Rodar o roteiro fim a fim no ambiente final escolhido.
+- Decidir se Superteam Brasil entra em `teste` como pacote de demo ou se fica em standby apos a submissao.
 
 Validacao do incremento frontend Tether:
 
