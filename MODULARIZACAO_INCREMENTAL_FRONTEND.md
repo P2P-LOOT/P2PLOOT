@@ -482,29 +482,94 @@ Resultado visual:
 - Nenhuma mudança nas rotas de `Web3Games`.
 - Nenhuma mudança esperada nas props públicas de `Web3GamesHome`, `FilterAccordion` ou `GameCard`.
 
-## Próximos incrementos recomendados
+## Incremento 5 concluído: seções visuais do catálogo
 
-### Incremento 5: separar seções visuais do catálogo
+### Resumo
 
-Motivo: a página principal pode ficar ainda mais fácil de alterar por agentes de IA.
+`Web3GamesHome.jsx` foi reduzido novamente para atuar como composição de alto nível do catálogo.
 
-Extrações recomendadas:
+A sidebar de filtros, a barra de busca e as seções de listagem foram extraídas para componentes visuais dedicados, preservando o estado e a lógica já centralizados no `useGameFilters`.
 
-- `components/GamesSection.jsx`
+### Componentes criados
+
+- `src/components/Web3Games/components/GamesSection.jsx`
   - título;
   - ícone;
   - lista de jogos;
   - empty state;
   - props para voto, favorito e edição.
-- `components/GamesSidebarFilters.jsx`
+
+- `src/components/Web3Games/components/GamesSidebarFilters.jsx`
   - sidebar completa de filtros;
+  - ação de limpar filtros;
   - uso de `FilterAccordion`.
-- `components/GamesSearchBar.jsx`
-  - input de busca.
 
-Critério de sucesso:
+- `src/components/Web3Games/components/GamesSearchBar.jsx`
+  - input de busca;
+  - ícone visual de pesquisa;
+  - props controladas para valor e alteração.
 
-- `Web3GamesHome.jsx` ficar como composição de alto nível.
+### Arquivos modificados
+
+- `src/components/Web3Games/Web3GamesHome.jsx`
+  - passou a compor os novos componentes visuais;
+  - manteve controle de modais, hooks e handlers principais.
+
+### Commits do incremento
+
+- `refactor(web3games): extract catalog presentation components` (`4987673`)
+
+### Validação
+
+- `git diff --check` executado com sucesso.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: catálogo de jogos Web3 (`Web3GamesHome`).
+- Rota: `/pt/games`.
+- Fonte do antes: branch `feat/web3games-catalog-sections-increment-5` antes da extração visual.
+- Fonte do depois: working tree atual após a extração do Incremento 5.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: estado vazio do catálogo com API local sem dados disponíveis para a captura.
+- Viewports: desktop `1440x1000` e mobile `390x1000`.
+- Estados capturados: página do catálogo com filtros abertos, busca vazia e empty states das seções.
+
+Prints:
+
+#### Antes — desktop
+
+![Incremento 5 - seções do catálogo antes desktop](docs/evidencias/frontend/incremento-5-catalog-sections/antes-catalog-sections-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 5 - seções do catálogo depois desktop](docs/evidencias/frontend/incremento-5-catalog-sections/depois-catalog-sections-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 5 - seções do catálogo antes mobile](docs/evidencias/frontend/incremento-5-catalog-sections/antes-catalog-sections-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 5 - seções do catálogo depois mobile](docs/evidencias/frontend/incremento-5-catalog-sections/depois-catalog-sections-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre a equivalência de sidebar, busca, títulos de seção e empty states em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+- Nenhuma mudança esperada nas props públicas de `Web3GamesHome`, `FilterAccordion` ou `GameCard`.
+
+## Próximos incrementos recomendados
 
 ### Incremento 6: comentários de jogos
 
@@ -555,11 +620,10 @@ Critério de sucesso:
 
 ## Ordem sugerida de execução
 
-1. Separar seções visuais de `Web3GamesHome.jsx`.
-2. Modularizar seção de comentários em `GameDetailsPage.jsx`.
-3. Modularizar hero/dados técnicos da página de detalhes.
-4. Modularizar blocos menores da página de blockchain.
-5. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
+1. Modularizar seção de comentários em `GameDetailsPage.jsx`.
+2. Modularizar hero/dados técnicos da página de detalhes.
+3. Modularizar blocos menores da página de blockchain.
+4. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
 
 ## Checklist por incremento
 
