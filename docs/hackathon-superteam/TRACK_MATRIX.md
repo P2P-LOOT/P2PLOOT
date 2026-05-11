@@ -14,7 +14,7 @@
 | --- | --- | --- |
 | Privacy | Usa o mesmo fluxo Cloak-ready para explicar identidade/wallet protegida | Separar o que e mascaramento de UI do que e privacidade criptografica real |
 | RPC / Solflare / QuickNode / Birdeye | Usa status tecnico, wallet e explorer/status do checkout | RPC health pronto; Birdeye/Solflare visual ficam como incrementos separados |
-| Adevar | Usa o fluxo escrow como caso auditavel | Criar pacote de ameacas, permissoes e limites de seguranca |
+| Adevar | Usa o fluxo escrow como caso auditavel | Pacote inicial criado em `AUDIT_SCOPE_P2PLOOT_ESCROW.md`; testes minimos ficam como proximo incremento |
 | Dune | Usa eventos de escrow/anuncios como fonte analitica | Definir queries ou export minimo de metricas |
 | Jupiter | Pode entrar como extensao de quote/swap | Nao misturar se atrasar a demo P0 |
 | KIRAPAY | Pode entrar como trilha alternativa de pagamento | Depende de callback/webhook e criterio de seguranca |

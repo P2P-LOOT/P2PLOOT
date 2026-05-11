@@ -20,6 +20,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Cloak | `track/cloak-private-checkout` | `track/cloak-private-checkout` | criada localmente |
 | Superteam Brasil | `track/superteam-brasil-demo` | `track/superteam-brasil-demo` | criada localmente |
 | RPC live checkout | `track/solana-rpc-live-checkout` | `track/solana-rpc-live-checkout` | criada localmente |
+| Adevar audit package | `track/adevar-audit-package` | `track/adevar-audit-package` | criada localmente |
 
 ## Ordem inicial de aplicacao
 
@@ -45,6 +46,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Cloak | ready for promotion decision | decisao de promocao ou standby |
 | Superteam Brasil | ready for demo review | decisao de promocao ou standby |
 | RPC live checkout | ready for promotion decision | decisao de promocao ou standby |
+| Adevar audit package | ready for demo review | testes minimos de permissao/status se houver tempo |
 
 ## Regras ativas para os proximos PRs
 
@@ -70,6 +72,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Superteam Brasil demo package | root docs | `track-inc/superteam-brasil-demo/01-demo-script-and-seed-checklist` | `track/superteam-brasil-demo` | documentado no root |
 | RPC health status | `p2ploot-backend` | `track-inc/solana-rpc-live-checkout/01-rpc-health-status` | `track/solana-rpc-live-checkout` | integrado localmente na branch especial |
 | Checkout RPC health chip | `p2ploot-frontend` | `track-inc/solana-rpc-live-checkout/01-technical-checkout-rpc-chip` | `track/solana-rpc-live-checkout` | integrado localmente na branch especial |
+| Adevar escrow audit scope | root docs | `track-inc/adevar-audit-package/01-escrow-audit-scope` | `track/adevar-audit-package` | documentado no root |
 
 Validacao do incremento core baseline:
 
@@ -169,6 +172,23 @@ Pendente antes de abrir PR da branch especial para `teste`:
 
 - Decidir se a entrega RPC Fast entra agora em `teste` ou fica em standby.
 - Se Birdeye quote ou validacao visual dedicada de Solflare forem necessarias para a submissao Eitherway/Solflare/QuickNode/Birdeye, abrir incrementos separados na mesma branch especial.
+
+## Gate atual da track Adevar audit package
+
+Cumprido:
+
+- Branches especiais `track/adevar-audit-package` criadas nos subrepos e alinhadas com `origin/teste`.
+- Pacote inicial de auditoria criado em `docs/hackathon-superteam/AUDIT_SCOPE_P2PLOOT_ESCROW.md`.
+- Arquitetura de escrow, rotas, bibliotecas e frontend em escopo foram mapeados.
+- Permissoes por acao foram documentadas.
+- Status ativos/terminais e invariantes foram listados.
+- Riscos, mitigacoes e escopo recomendado para auditoria externa foram registrados.
+- Evidencias Tether, Cloak e RPC foram referenciadas como material de suporte.
+
+Pendente antes de abrir PR da branch especial para `teste`:
+
+- Decidir se o pacote Adevar entra como documentacao de submissao agora ou fica em standby.
+- Se houver tempo, adicionar smoke/testes minimos focados em permissao e regressao de status terminal.
 
 Validacao do incremento frontend Tether:
 
