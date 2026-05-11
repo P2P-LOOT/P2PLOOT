@@ -39,7 +39,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 
 | Track | Status | Proximo incremento recomendado |
 | --- | --- | --- |
-| Core compartilhado | implementing | `inc-01-baseline-env-status` |
+| Core compartilhado | baseline documented | matriz de envs + extracao modular |
 | Tether | ready for promotion decision | decisao de promocao para `teste` |
 | Cloak | standby curto ate baseline | `inc-01-privacy-metadata-audit` |
 | Superteam Brasil | standby curto ate demo base | `inc-01-demo-script-and-seed-checklist` |
@@ -61,6 +61,19 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Tether USDT smoke coverage | `p2ploot-backend` | `track-inc/tether-usdt-escrow/01-usdt-smoke-coverage` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Tether stablecoin mint resolution | `p2ploot-backend` | `track-inc/tether-usdt-escrow/02-usdt-mint-resolution` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Tether USDT demo seed | `p2ploot-backend` | `track-inc/tether-usdt-escrow/03-usdt-demo-seed` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
+| Core baseline/env/status | root docs | `track-inc/superteam-core/01-baseline-env-status` | `track/superteam-core` | documentado no root |
+
+Validacao do incremento core baseline:
+
+- Subrepos alternados para `track/superteam-core`, ambos alinhados com `origin/teste`.
+- Baseline registrado em `docs/hackathon-superteam/CORE_BASELINE_ENV_STATUS.md`.
+- Auditoria confirmou rotas backend Web3 de status, wallets, escrow e privacy status.
+- Auditoria confirmou envs frontend/backend para Solana, Privy, Kora e API.
+- Lacuna principal documentada: `AdDetailsModal.jsx` ainda concentra checkout/chat/escrow/privacidade com 2597 linhas.
+- Lacunas de promocao ao core documentadas: matriz de envs, utilitarios de formatacao e extracao do painel de checkout.
+- `VITE_API_URL=http://localhost:6110 npm run build` no frontend core: passou.
+- `npm run build` no backend core: passou.
+- Avisos conhecidos: Rollup remove anotacoes `/*#__PURE__*/` de dependencias `@privy-io/react-auth`/`ox`; backend avisou fallback JS de `bigint`. Nenhum bloqueou build.
 
 Validacao do incremento frontend Tether:
 
