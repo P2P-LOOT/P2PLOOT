@@ -40,7 +40,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Track | Status | Proximo incremento recomendado |
 | --- | --- | --- |
 | Core compartilhado | implementing | `inc-01-baseline-env-status` |
-| Tether | implementing | `inc-01-usdt-escrow-audit` |
+| Tether | implementing | evidencia visual + smoke `USDT` com backend local |
 | Cloak | standby curto ate baseline | `inc-01-privacy-metadata-audit` |
 | Superteam Brasil | standby curto ate demo base | `inc-01-demo-script-and-seed-checklist` |
 
@@ -57,14 +57,37 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 
 | Incremento | Repositorio | Branch | Target planejado | Status |
 | --- | --- | --- | --- | --- |
-| Tether USDT currency parser | `p2ploot-frontend` | `track-inc/tether-usdt-escrow/01-usdt-currency-parser` | `track/tether-usdt-escrow` | validado localmente |
+| Tether USDT currency parser | `p2ploot-frontend` | `track-inc/tether-usdt-escrow/01-usdt-currency-parser` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
+| Tether USDT smoke coverage | `p2ploot-backend` | `track-inc/tether-usdt-escrow/01-usdt-smoke-coverage` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 
-Validacao do incremento Tether:
+Validacao do incremento frontend Tether:
 
 - `git diff --check` no frontend: passou.
 - `VITE_API_URL=http://localhost:6110 npm run build` no frontend: passou.
 - Avisos conhecidos: Rollup remove anotacoes `/*#__PURE__*/` de dependencias `@privy-io/react-auth`/`ox`; nao bloqueou o build.
 - Evidencia visual: pendente antes do PR, com modal de anuncio `USDT` aberto e detalhe tecnico do escrow mostrando `USDT`.
+
+Validacao do incremento backend Tether:
+
+- `git diff --check` no backend: passou.
+- `node --check scripts/smoke-web3.js`: passou.
+- `node --check scripts/smoke-web3-tether.js`: passou.
+- Parse de `package.json`: passou.
+- Smoke real `npm run smoke:web3:tether`: pendente porque exige backend local ativo em `API_BASE`.
+
+## Gate atual da track Tether
+
+Cumprido:
+
+- Anuncio/checkout do frontend preserva `ad.currency` e nao troca `USDT` por `USDC` no escrow.
+- Backend aceita e assertivamente testa `currencySymbol: USDT` no caminho smoke parametrizado.
+- Branches especiais locais de frontend e backend foram atualizadas com os incrementos validados.
+
+Pendente antes de marcar `guaranteed`:
+
+- Rodar smoke real com backend local e dados seedados: `npm run smoke:web3:tether`.
+- Capturar evidencia visual desktop/mobile do checkout de anuncio `USDT`.
+- Confirmar se a submissao Tether deve ficar em demo/devnet ou seguir para PR de promocao a `teste`.
 
 ## Observacoes de preflight
 
