@@ -40,7 +40,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Track | Status | Proximo incremento recomendado |
 | --- | --- | --- |
 | Core compartilhado | implementing | `inc-01-baseline-env-status` |
-| Tether | implementing | evidencia visual desktop/mobile + decisao de promocao |
+| Tether | ready for promotion decision | decisao de promocao para `teste` |
 | Cloak | standby curto ate baseline | `inc-01-privacy-metadata-audit` |
 | Superteam Brasil | standby curto ate demo base | `inc-01-demo-script-and-seed-checklist` |
 
@@ -60,6 +60,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Tether USDT currency parser | `p2ploot-frontend` | `track-inc/tether-usdt-escrow/01-usdt-currency-parser` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Tether USDT smoke coverage | `p2ploot-backend` | `track-inc/tether-usdt-escrow/01-usdt-smoke-coverage` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Tether stablecoin mint resolution | `p2ploot-backend` | `track-inc/tether-usdt-escrow/02-usdt-mint-resolution` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
+| Tether USDT demo seed | `p2ploot-backend` | `track-inc/tether-usdt-escrow/03-usdt-demo-seed` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 
 Validacao do incremento frontend Tether:
 
@@ -89,6 +90,15 @@ Validacao smoke real Tether:
 - O smoke validou caminhos de release, refund e cancelamento com `assetMint` resolvido para `Es9vMFrzaCERmJfrF4H2FYD4jU7VvSksQ88BNTc1NfQ`.
 - Backend local foi encerrado apos a validacao.
 
+Validacao de seed/demo e evidencia visual Tether:
+
+- `node --check scripts/seed-web3-smoke-data.js`: passou.
+- Seed local Web3 executado com `SMOKE_CURRENCY_SYMBOL=USDT`, criando anuncios ativos de demo em `USDT`.
+- Backend local foi iniciado com `SOLANA_DEVNET_USDT_MINT=Es9vMFrzaCERmJfrF4H2FYD4jU7VvSksQ88BNTc1NfQ` para validar o caminho de checkout sem `assetMint` explicito.
+- Checkout real pela UI criou escrow `funded` com `currencySymbol: USDT`, `amountUi: 10` e `assetMint: Es9vMFrzaCERmJfrF4H2FYD4jU7VvSksQ88BNTc1NfQ`.
+- Evidencia desktop: `docs/hackathon-superteam/evidences/tether/tether-usdt-checkout-desktop.png`.
+- Evidencia mobile: `docs/hackathon-superteam/evidences/tether/tether-usdt-checkout-mobile.png`.
+
 ## Gate atual da track Tether
 
 Cumprido:
@@ -98,12 +108,13 @@ Cumprido:
 - Backend resolve `assetMint` por moeda/rede quando o checkout cria escrow sem mint explicito.
 - `.env.example` documenta mints `USDC`/`USDT` por devnet/mainnet, deixando devnet USDT configuravel.
 - Smoke real `npm run smoke:web3:tether` passou contra backend local depois de aplicar migracoes pendentes.
+- Seed Web3 aceita `SMOKE_CURRENCY_SYMBOL=USDT` para gerar anuncios de demo coerentes com a track.
+- Evidencias visuais desktop/mobile confirmam checkout `USDT` com detalhe tecnico `VALOR 10 USDT`.
 - Branches especiais locais de frontend e backend foram atualizadas com os incrementos validados.
 
-Pendente antes de marcar `guaranteed`:
+Pendente antes de abrir PR da branch especial para `teste`:
 
-- Capturar evidencia visual desktop/mobile do checkout de anuncio `USDT`.
-- Configurar `SOLANA_DEVNET_USDT_MINT` com mint de demo/teste se a submissao Tether for demonstrada em devnet com SPL token real.
+- Confirmar `SOLANA_DEVNET_USDT_MINT` no ambiente de demo/deploy se a submissao Tether for demonstrada em devnet com SPL token real.
 - Confirmar se a submissao Tether deve ficar em demo/devnet ou seguir para PR de promocao a `teste`.
 
 ## Observacoes de preflight
