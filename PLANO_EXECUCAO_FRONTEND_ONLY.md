@@ -32,6 +32,7 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## Onda 0 — Baseline e preparo (0.5 dia)
 
 ### Entregas
+
 - Congelar baseline de comportamento atual das telas criticas:
   - Player Market (chat + ad details)
   - Guilda (auction + management)
@@ -39,6 +40,7 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 - Confirmar lista de arquivos-alvo e sequencia de PRs.
 
 ### Criterio de aceite
+
 - Checklist de regressao manual definida por fluxo.
 - Escopo fechado sem itens de backend.
 
@@ -47,20 +49,23 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## Onda 1 — Correcao de baixo risco e alto retorno (1 dia)
 
 ### Entregas
+
 1. **API client**
-   - Remover duplicacao de `getGames()` em `src/lib/api.js`.
+  - Remover duplicacao de `getGames()` em `src/lib/api.js`.
 2. **Chat**
-   - Em `AdDetailsModal`, usar retorno do POST de mensagem para atualizar estado local sem `getMessages` imediato em toda interacao.
+  - Em `AdDetailsModal`, usar retorno do POST de mensagem para atualizar estado local sem `getMessages` imediato em toda interacao.
 3. **Debounce**
-   - Aplicar `useDebounce` no input de autocomplete em `GuildAuctionSection`.
+  - Aplicar `useDebounce` no input de autocomplete em `GuildAuctionSection`.
 
 ### Arquivos principais
+
 - `src/lib/api.js`
 - `src/components/PlayerMarket/AdDetailsModal.jsx`
 - `src/components/Guild/GuildAuctionSection.jsx`
 - `src/hooks/usePerformance.js` (reuso)
 
 ### Criterio de aceite
+
 - Nenhuma duplicacao de `getGames`.
 - Menos requests em digitacao e envio de mensagem (verificacao no Network tab).
 - Fluxos de chat e autocomplete continuam funcionais.
@@ -70,16 +75,19 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## Onda 2 — Padronizacao da camada de rede no frontend (1 a 1.5 dia)
 
 ### Entregas
+
 1. Criar adapter frontend para CoinGecko (ex.: `src/lib/external/coingecko.js`).
 2. Migrar `TokensPage` e `MercadoPage` para usar esse adapter.
 3. Unificar tratamento de erro e parsing de resposta.
 
 ### Arquivos principais
+
 - `src/components/Tokens/TokensPage.jsx`
 - `src/components/Market/MercadoPage.jsx`
 - `src/lib/external/coingecko.js` (novo)
 
 ### Criterio de aceite
+
 - Nenhum `fetch(` direto em `TokensPage` e `MercadoPage`.
 - Comportamento visual mantido.
 - Erro de rede exibido com feedback consistente.
@@ -89,20 +97,23 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## Onda 3 — UX e feedback (1 a 1.5 dia)
 
 ### Entregas
+
 1. Mapear e substituir `alert/confirm` residuais nos fluxos priorizados:
-   - Guild auctions
-   - Guild management/modals
-   - Player market remanescente
+  - Guild auctions
+  - Guild management/modals
+  - Player market remanescente
 2. Padronizar feedback assíncrono via `showToast` (loading/success/error).
 
 ### Arquivos principais (prioridade)
+
 - `src/components/Guild/GuildAuctionSection.jsx`
 - `src/components/Guild/GuildManagementPage.jsx`
 - `src/components/Guild/modals/FieldConfigModal.jsx`
 - `src/components/Guild/modals/MemberManagementModal.jsx`
-- `src/components/PlayerMarket/*`
+- `src/components/PlayerMarket/`*
 
 ### Criterio de aceite
+
 - Reducao significativa de uso de `alert(` e `confirm(` nos fluxos criticos.
 - Operacoes sensiveis com feedback de loading e resultado.
 
@@ -111,17 +122,20 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## Onda 4 — Refatoracao estrutural frontend (3 a 4 dias)
 
 ### Entregas
+
 1. Extrair hooks locais para reduzir acoplamento:
-   - `useConversationFlow` (chat/ad details)
-   - `useEscrowFlow` (acoes de escrow no modal)
-   - `useAuctionBulkActions` / `useAuctionSearch` (guild auction)
+  - `useConversationFlow` (chat/ad details)
+  - `useEscrowFlow` (acoes de escrow no modal)
+  - `useAuctionBulkActions` / `useAuctionSearch` (guild auction)
 2. Quebrar blocos utilitarios para diminuir tamanho dos componentes sem alterar regra.
 
 ### Arquivos alvo
+
 - `src/components/PlayerMarket/AdDetailsModal.jsx`
 - `src/components/Guild/GuildAuctionSection.jsx`
 
 ### Criterio de aceite
+
 - Componentes com menos responsabilidades por arquivo.
 - Sem mudanca funcional perceptivel para usuario.
 - Regressao manual dos fluxos principais aprovada.
@@ -131,11 +145,13 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## Onda 5 — Qualidade e protecao de mudancas (1 dia)
 
 ### Entregas
+
 1. Versionar e ativar ESLint no frontend.
 2. Adicionar checks minimos para evitar regressao de padrao (DRY e usos proibidos de `alert/confirm` em areas definidas).
 3. Revisar lints nas telas alteradas.
 
 ### Criterio de aceite
+
 - `npm run lint` funcional no frontend.
 - Principais arquivos alterados sem erros novos.
 
@@ -155,6 +171,7 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## 5) Validacao por fluxo (checklist rapido)
 
 ### Player Market
+
 - abrir anuncio
 - iniciar conversa
 - enviar mensagem
@@ -162,6 +179,7 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 - denunciar anuncio
 
 ### Guilda
+
 - buscar item por autocomplete
 - publicar/cancelar leilao
 - acoes em lote (delivery/delete history)
@@ -169,6 +187,7 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 - gestao de membro
 
 ### Tokens/Mercado
+
 - alternar tabs
 - trocar filtros
 - tratar erro de API externa
@@ -178,12 +197,15 @@ Executar as melhorias que dependem exclusivamente do frontend para:
 ## 6) Riscos e mitigacao
 
 ### Risco 1: regressao em chat
+
 - Mitigacao: PR isolado + testes manuais de envio/inbox antes de merge.
 
 ### Risco 2: mudanca de comportamento em telas com muitos side effects
+
 - Mitigacao: refatoracao por extracao incremental de hook (sem alterar contrato de props primeiro).
 
 ### Risco 3: variacao de UX ao remover `confirm`
+
 - Mitigacao: padrao unico com toast de loading + estado de acao + mensagens claras.
 
 ---
