@@ -63,6 +63,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Tether USDT demo seed | `p2ploot-backend` | `track-inc/tether-usdt-escrow/03-usdt-demo-seed` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Core baseline/env/status | root docs | `track-inc/superteam-core/01-baseline-env-status` | `track/superteam-core` | documentado no root |
 | Cloak privacy metadata audit | `p2ploot-backend` + root docs | `track-inc/cloak-private-checkout/01-privacy-metadata-audit` | `track/cloak-private-checkout` | integrado localmente na branch especial |
+| Cloak privacy metadata smoke | `p2ploot-backend` | `track-inc/cloak-private-checkout/02-privacy-metadata-smoke` | `track/cloak-private-checkout` | integrado localmente na branch especial |
 
 Validacao do incremento core baseline:
 
@@ -85,7 +86,10 @@ Validacao do incremento Cloak privacy metadata:
 - Ajuste aplicado no backend: `metadata.cloakPrivacy` do escrow agora guarda somente campos operacionais minimos, deixando docs/config no endpoint de status.
 - `npm run build` no backend Cloak: passou.
 - Aviso conhecido: fallback JS de `bigint`; nao bloqueou build.
-- Validacoes finais pendentes: smoke/roteiro criando escrow com `metadata.cloakPrivacy.enabled: true` e evidencia visual.
+- `node --check scripts/smoke-cloak-privacy.js`: passou.
+- Parse de `package.json`: passou.
+- `npm run smoke:cloak`: passou com anuncio `Cloak Privacy Smoke QA`, escrow `metadata.cloakPrivacy.enabled: true`, metadata minima sem `devnet`/`disclosure` persistidos e comprador mascarado como `Comprador privado via Cloak` para o vendedor.
+- Validacao final pendente: evidencia visual desktop/mobile do fluxo Cloak privado.
 
 Validacao do incremento frontend Tether:
 

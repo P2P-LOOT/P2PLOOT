@@ -58,6 +58,6 @@ Essas informacoes continuam disponiveis no endpoint de status/diagnostico, que e
 ## Gates antes de promocao para `teste`
 
 - Build backend na branch Cloak passando.
+- Smoke `npm run smoke:cloak` passando com escrow `metadata.cloakPrivacy.enabled: true` e comprador mascarado para vendedor.
 - Evidencia visual de anuncio com vendedor privado e conversa com comprador privado.
-- Smoke ou roteiro manual criando escrow com `metadata.cloakPrivacy.enabled: true`.
 - Confirmar copy de UI para nao prometer privacidade de producao alem do que foi implementado.
