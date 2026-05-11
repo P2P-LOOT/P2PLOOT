@@ -482,84 +482,360 @@ Resultado visual:
 - Nenhuma mudança nas rotas de `Web3Games`.
 - Nenhuma mudança esperada nas props públicas de `Web3GamesHome`, `FilterAccordion` ou `GameCard`.
 
-## Próximos incrementos recomendados
+## Incremento 5 concluído: seções visuais do catálogo
 
-### Incremento 5: separar seções visuais do catálogo
+### Resumo
 
-Motivo: a página principal pode ficar ainda mais fácil de alterar por agentes de IA.
+`Web3GamesHome.jsx` foi reduzido novamente para atuar como composição de alto nível do catálogo.
 
-Extrações recomendadas:
+A sidebar de filtros, a barra de busca e as seções de listagem foram extraídas para componentes visuais dedicados, preservando o estado e a lógica já centralizados no `useGameFilters`.
 
-- `components/GamesSection.jsx`
+### Componentes criados
+
+- `src/components/Web3Games/components/GamesSection.jsx`
   - título;
   - ícone;
   - lista de jogos;
   - empty state;
   - props para voto, favorito e edição.
-- `components/GamesSidebarFilters.jsx`
+
+- `src/components/Web3Games/components/GamesSidebarFilters.jsx`
   - sidebar completa de filtros;
+  - ação de limpar filtros;
   - uso de `FilterAccordion`.
-- `components/GamesSearchBar.jsx`
-  - input de busca.
 
-Critério de sucesso:
+- `src/components/Web3Games/components/GamesSearchBar.jsx`
+  - input de busca;
+  - ícone visual de pesquisa;
+  - props controladas para valor e alteração.
 
-- `Web3GamesHome.jsx` ficar como composição de alto nível.
+### Arquivos modificados
 
-### Incremento 6: comentários de jogos
+- `src/components/Web3Games/Web3GamesHome.jsx`
+  - passou a compor os novos componentes visuais;
+  - manteve controle de modais, hooks e handlers principais.
 
-Motivo: `GameDetailsPage.jsx` ainda contém layout da seção de comentários e função de formatação de datas.
+### Commits do incremento
 
-Extrações recomendadas:
+- `refactor(web3games): extract catalog presentation components` (`4987673`)
 
-- `components/GameCommentsSection.jsx`
+### Validação
+
+- `git diff --check` executado com sucesso.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: catálogo de jogos Web3 (`Web3GamesHome`).
+- Rota: `/pt/games`.
+- Fonte do antes: branch `feat/web3games-catalog-sections-increment-5` antes da extração visual.
+- Fonte do depois: working tree atual após a extração do Incremento 5.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: estado vazio do catálogo com API local sem dados disponíveis para a captura.
+- Viewports: desktop `1440x1000` e mobile `390x1000`.
+- Estados capturados: página do catálogo com filtros abertos, busca vazia e empty states das seções.
+
+Prints:
+
+#### Antes — desktop
+
+![Incremento 5 - seções do catálogo antes desktop](docs/evidencias/frontend/incremento-5-catalog-sections/antes-catalog-sections-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 5 - seções do catálogo depois desktop](docs/evidencias/frontend/incremento-5-catalog-sections/depois-catalog-sections-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 5 - seções do catálogo antes mobile](docs/evidencias/frontend/incremento-5-catalog-sections/antes-catalog-sections-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 5 - seções do catálogo depois mobile](docs/evidencias/frontend/incremento-5-catalog-sections/depois-catalog-sections-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre a equivalência de sidebar, busca, títulos de seção e empty states em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+- Nenhuma mudança esperada nas props públicas de `Web3GamesHome`, `FilterAccordion` ou `GameCard`.
+
+## Incremento 6 concluído: comentários de jogos
+
+### Resumo
+
+A seção de comentários de `GameDetailsPage.jsx` foi extraída para um componente visual dedicado.
+
+A formatação relativa de datas também foi movida para um utilitário reutilizável, mantendo `GameDetailsPage.jsx` mais focado em hero, conteúdo principal, dados técnicos e composição.
+
+### Arquivos criados
+
+- `src/components/Web3Games/components/GameCommentsSection.jsx`
+  - cabeçalho da seção de comentários;
   - formulário de novo comentário;
   - empty/loading states;
-  - lista de `CommentItem`.
-- `utils/dateFormatters.js`
-  - `formatRelativeDate` com suporte a i18n.
+  - lista de `CommentItem`;
+  - repasse dos handlers de voto, resposta e exclusão.
 
-Critério de sucesso:
+- `src/components/Web3Games/utils/dateFormatters.js`
+  - `formatRelativeDate` com suporte a i18n;
+  - preservação das mensagens relativas já usadas pela tela.
 
-- `GameDetailsPage.jsx` ficar focado em hero, dados técnicos e composição.
+### Arquivos modificados
 
-### Incremento 7: dados técnicos e hero de detalhes
+- `src/components/Web3Games/GameDetailsPage.jsx`
+  - passou a compor `GameCommentsSection`;
+  - removeu layout inline da seção de comentários;
+  - manteve carregamento de jogo, hook de comentários, permissões e sidebar técnica.
 
-Motivo: a página de detalhes ainda possui blocos visuais grandes.
+### Commits do incremento
 
-Extrações recomendadas:
+- `refactor(web3games): extract game comments section` (`49c4d96`)
 
-- `components/GameDetailsHero.jsx`
-- `components/GameTechnicalDataCard.jsx`
-- `components/GameAboutSection.jsx`
+### Validação
 
-Critério de sucesso:
+- `git diff --check` executado com sucesso.
+- Smoke test da função `formatRelativeDate` executado com sucesso via `node --input-type=module`.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
 
-- Cada componente representar uma região clara da tela.
+### Evidências visuais
 
-### Incremento 8: página de blockchain
+Status: documentado com comparação antes/depois em desktop e mobile.
 
-Motivo: `BlockchainDetailsPage.jsx` já está menor, mas pode ser mais modular.
+Contexto validado:
 
-Extrações recomendadas:
+- Área: página de detalhes de jogo (`GameDetailsPage`), seção de comentários.
+- Rota: `/pt/games/game/db-4`.
+- Fonte do antes: branch `feat/web3games-comments-increment-6` antes da extração da seção.
+- Fonte do depois: working tree atual após a extração do Incremento 6.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: jogo retornado por `/api/games` com id `4`; comentários em estado vazio/visitante.
+- Viewports: desktop `1440x2200` e mobile `390x2200`.
+- Estados capturados: página de detalhes incluindo hero, conteúdo, sidebar técnica e seção de comentários.
 
-- `components/BlockchainHero.jsx`
-- `components/BlockchainInfoCard.jsx`
-- `components/RelatedGamesGrid.jsx`
-- `hooks/useBlockchainRelatedGames.js`
+Prints:
 
-Critério de sucesso:
+#### Antes — desktop
 
-- Página com menos lógica inline.
-- Reuso de card/lista para jogos relacionados, se fizer sentido.
+![Incremento 6 - comentários antes desktop](docs/evidencias/frontend/incremento-6-game-comments/antes-game-comments-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 6 - comentários depois desktop](docs/evidencias/frontend/incremento-6-game-comments/depois-game-comments-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 6 - comentários antes mobile](docs/evidencias/frontend/incremento-6-game-comments/antes-game-comments-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 6 - comentários depois mobile](docs/evidencias/frontend/incremento-6-game-comments/depois-game-comments-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre a equivalência da página de detalhes e da seção de comentários em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+- Nenhuma mudança esperada nas props públicas de `CommentItem`.
+
+## Incremento 7 concluído: hero e dados técnicos de detalhes
+
+### Resumo
+
+`GameDetailsPage.jsx` foi reduzido novamente para compor regiões de alto nível da página de detalhes.
+
+O hero, a seção "sobre" e o card de dados técnicos foram extraídos para componentes visuais dedicados, mantendo carregamento de dados, comentários, permissões e navegação no container da página.
+
+### Componentes criados
+
+- `src/components/Web3Games/components/GameDetailsHero.jsx`
+  - imagem de fundo;
+  - botão voltar;
+  - badges de status/modo;
+  - título, gênero, blockchain e ações principais.
+
+- `src/components/Web3Games/components/GameAboutSection.jsx`
+  - descrição curta;
+  - bloco `Deep Dive`;
+  - título da seção "sobre".
+
+- `src/components/Web3Games/components/GameTechnicalDataCard.jsx`
+  - modo, gênero, blockchain, plataforma, status, NFT info e token;
+  - regiões e servidores;
+  - requisitos do jogo.
+
+### Arquivos modificados
+
+- `src/components/Web3Games/GameDetailsPage.jsx`
+  - passou a compor os novos componentes visuais;
+  - manteve busca de jogo, hook de comentários, permissões e handlers principais.
+
+### Commits do incremento
+
+- `refactor(web3games): extract game details layout sections` (`85edc31`)
+
+### Validação
+
+- `git diff --check` executado com sucesso.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: página de detalhes de jogo (`GameDetailsPage`), hero, seção sobre e card técnico.
+- Rota: `/pt/games/game/db-4`.
+- Fonte do antes: branch `feat/web3games-details-layout-increment-7` antes da extração visual.
+- Fonte do depois: working tree atual após a extração do Incremento 7.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: jogo retornado por `/api/games` com id `4`.
+- Viewports: desktop `1440x2200` e mobile `390x2200`.
+- Estados capturados: página de detalhes incluindo hero, conteúdo, sidebar técnica e seção de comentários.
+
+Prints:
+
+#### Antes — desktop
+
+![Incremento 7 - detalhes antes desktop](docs/evidencias/frontend/incremento-7-game-details-layout/antes-game-details-layout-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 7 - detalhes depois desktop](docs/evidencias/frontend/incremento-7-game-details-layout/depois-game-details-layout-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 7 - detalhes antes mobile](docs/evidencias/frontend/incremento-7-game-details-layout/antes-game-details-layout-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 7 - detalhes depois mobile](docs/evidencias/frontend/incremento-7-game-details-layout/depois-game-details-layout-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre a equivalência do hero, conteúdo principal, dados técnicos e comentários em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+
+## Incremento 8 concluído: página de blockchain
+
+### Resumo
+
+`BlockchainDetailsPage.jsx` foi modularizado em componentes visuais e hook dedicado para jogos relacionados.
+
+A página agora fica focada em localizar a blockchain, compor as regiões da tela e controlar navegação, enquanto busca de jogos relacionados e blocos visuais ficam isolados.
+
+### Componentes e módulos criados
+
+- `src/components/Web3Games/components/BlockchainHero.jsx`
+  - imagem de fundo;
+  - botão voltar;
+  - badges de token/tipo;
+  - título e link para site oficial.
+
+- `src/components/Web3Games/components/BlockchainInfoCard.jsx`
+  - descrição da rede;
+  - consenso;
+  - foco principal.
+
+- `src/components/Web3Games/components/RelatedGamesGrid.jsx`
+  - título da seção de jogos do ecossistema;
+  - grid/lista de jogos relacionados;
+  - empty state;
+  - ação de edição para perfis com permissão.
+
+- `src/components/Web3Games/hooks/useBlockchainRelatedGames.js`
+  - busca jogos via `api.getGames()`;
+  - filtra por blockchain;
+  - normaliza com `mapApiGameToRelatedGame`.
+
+### Arquivos modificados
+
+- `src/components/Web3Games/BlockchainDetailsPage.jsx`
+  - passou a compor os novos componentes;
+  - manteve fallback de blockchain não encontrada;
+  - preservou navegação para catálogo e detalhes de jogo.
+
+### Commits do incremento
+
+- `refactor(web3games): extract blockchain details sections` (`24bdf92`)
+
+### Validação
+
+- `git diff --check` executado com sucesso.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: página de detalhes de blockchain (`BlockchainDetailsPage`).
+- Rota: `/pt/games/blockchain/Open%20Loot`.
+- Fonte do antes: branch `feat/web3games-blockchain-page-increment-8` antes da extração.
+- Fonte do depois: working tree atual após a extração do Incremento 8.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: blockchain local `Open Loot`; jogos relacionados em empty state.
+- Viewports: desktop `1440x1400` e mobile `390x1400`.
+- Estados capturados: hero da blockchain, info card e seção de jogos relacionados.
+
+Prints:
+
+#### Antes — desktop
+
+![Incremento 8 - blockchain antes desktop](docs/evidencias/frontend/incremento-8-blockchain-page/antes-blockchain-page-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 8 - blockchain depois desktop](docs/evidencias/frontend/incremento-8-blockchain-page/depois-blockchain-page-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 8 - blockchain antes mobile](docs/evidencias/frontend/incremento-8-blockchain-page/antes-blockchain-page-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 8 - blockchain depois mobile](docs/evidencias/frontend/incremento-8-blockchain-page/depois-blockchain-page-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre hero, info card e empty state de jogos relacionados em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+
+## Próximos incrementos recomendados
+
+Após estabilizar os incrementos de `Web3Games`, reavaliar outros P0 do relatório original.
 
 ## Ordem sugerida de execução
 
-1. Separar seções visuais de `Web3GamesHome.jsx`.
-2. Modularizar seção de comentários em `GameDetailsPage.jsx`.
-3. Modularizar hero/dados técnicos da página de detalhes.
-4. Modularizar blocos menores da página de blockchain.
-5. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
+1. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
 
 ## Checklist por incremento
 

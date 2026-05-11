@@ -133,6 +133,34 @@ A atualização deve incluir:
 - contratos preservados;
 - evidências visuais quando houver impacto frontend/UX.
 
+### 8. Tracks Superteam devem usar branch especial e PR incremental
+
+Data: 2026-05-10
+Origem: pedido de governança modular das tracks Superteam
+Escopo: implementações, demos, documentações e integrações ligadas às tracks Superteam
+
+Regra:
+
+- Cada track deve ter uma branch especial própria no padrão `track/<slug-da-track>`.
+- Mudanças incrementais devem sair de branches `track-inc/<slug-da-track>/<numero>-<escopo-curto>`.
+- PRs incrementais devem ter como destino a branch especial da track, não `teste`.
+- A branch `teste` só deve receber PR vindo da branch especial da track quando a funcionalidade estiver garantida.
+- Se a track não for implementada agora em `teste`, a branch especial deve permanecer em standby com pendências e próximo passo documentados.
+- Mudanças compartilhadas por múltiplas tracks devem ir para `track/superteam-core` ou equivalente, quando fizer sentido.
+- Não usar o formato `track/<slug-da-track>/inc-...`, porque ele conflita com a ref Git da branch especial `track/<slug-da-track>`.
+
+Como aplicar:
+
+- Consultar `PLANO_GOVERNANCA_BRANCHES_TRACKS_SUPERTEAM.md`.
+- Usar o workflow `.windsurf/workflows/superteam-track-branch-governance.md`.
+- Para mudanças frontend/UX, aplicar também os workflows de preflight, evidência visual e review bundle.
+- Registrar no PR o status final da track: `implementing`, `ready-for-track-review`, `guaranteed`, `promoted-to-teste` ou `standby`.
+
+Exceções:
+
+- Hotfix pequeno pode ir direto para `teste` apenas com aprovação explícita.
+- Documentação sem impacto de produto pode ir em branch de docs, desde que não misture implementação de track.
+
 ## Template para nova regra
 
 ```md
