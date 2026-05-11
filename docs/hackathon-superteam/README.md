@@ -45,6 +45,8 @@ Fluxo recomendado:
 - Tether mobile: `docs/hackathon-superteam/evidences/tether/tether-usdt-checkout-mobile.png`.
 - Cloak comprador desktop: `docs/hackathon-superteam/evidences/cloak/cloak-private-buyer-desktop.png`.
 - Cloak vendedor mobile: `docs/hackathon-superteam/evidences/cloak/cloak-private-seller-mobile.png`.
+- RPC checkout desktop: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-desktop.png`.
+- RPC checkout mobile: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-mobile.png`.
 
 ## Limites honestos
 

@@ -44,7 +44,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Tether | ready for promotion decision | decisao de promocao para `teste` |
 | Cloak | ready for promotion decision | decisao de promocao ou standby |
 | Superteam Brasil | ready for demo review | decisao de promocao ou standby |
-| RPC live checkout | implementing | evidencia visual do chip RPC + decisao Birdeye/Solflare |
+| RPC live checkout | ready for promotion decision | decisao de promocao ou standby |
 
 ## Regras ativas para os proximos PRs
 
@@ -162,12 +162,13 @@ Validacoes:
 - Frontend `git diff --check`: passou.
 - Frontend `VITE_API_URL=http://localhost:6110 npm run build`: passou.
 - Check vivo `API_BASE=http://localhost:6110 npm run web3:status`: passou com `rpcHealth.ok: true`.
+- Evidencia desktop: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-desktop.png`.
+- Evidencia mobile: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-mobile.png`.
 
 Pendente antes de abrir PR da branch especial para `teste`:
 
-- Capturar evidencia visual desktop/mobile do chip RPC no checkout.
-- Decidir se Birdeye quote entra nesta track ou fica como incremento separado.
-- Validar/instruir Solflare explicitamente no pacote de submissao, sem trocar a camada de wallet agora.
+- Decidir se a entrega RPC Fast entra agora em `teste` ou fica em standby.
+- Se Birdeye quote ou validacao visual dedicada de Solflare forem necessarias para a submissao Eitherway/Solflare/QuickNode/Birdeye, abrir incrementos separados na mesma branch especial.
 
 Validacao do incremento frontend Tether:
 

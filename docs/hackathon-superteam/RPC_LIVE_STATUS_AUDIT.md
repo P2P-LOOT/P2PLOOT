@@ -60,6 +60,8 @@ Frontend:
   - `solana.rpcHealth.ok: true`;
   - `solana.rpcHealth.slot` preenchido;
   - `solana.rpcHealth.latencyMs` preenchido.
+- Evidencia desktop do chip RPC: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-desktop.png`.
+- Evidencia mobile do chip RPC: `docs/hackathon-superteam/evidences/rpc/rpc-health-checkout-mobile.png`.
 
 Avisos conhecidos:
 
@@ -74,4 +76,6 @@ Avisos conhecidos:
 
 ## Decisao de gate
 
-A track esta em `implementing`: RPC health e visibilidade no checkout foram cobertos, mas ainda faltam evidencia visual do chip no checkout e decisao sobre Birdeye/Solflare antes de promocao.
+A entrega RPC Fast desta branch esta pronta para decisao de promocao como MVP de RPC live no checkout.
+
+Birdeye quote e validacao visual dedicada de Solflare ficam como incrementos separados, porque o plano permite escolher uma ou duas integracoes e evitar dependencia critica no fluxo principal.

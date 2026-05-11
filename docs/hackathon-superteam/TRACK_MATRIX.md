@@ -13,7 +13,7 @@
 | Track | Como reaproveita a demo unica | Condicao antes de submissao forte |
 | --- | --- | --- |
 | Privacy | Usa o mesmo fluxo Cloak-ready para explicar identidade/wallet protegida | Separar o que e mascaramento de UI do que e privacidade criptografica real |
-| RPC / Solflare / QuickNode / Birdeye | Usa status tecnico, wallet e explorer/status do checkout | Validar provider RPC, wallet e links de explorer no ambiente final |
+| RPC / Solflare / QuickNode / Birdeye | Usa status tecnico, wallet e explorer/status do checkout | RPC health pronto; Birdeye/Solflare visual ficam como incrementos separados |
 | Adevar | Usa o fluxo escrow como caso auditavel | Criar pacote de ameacas, permissoes e limites de seguranca |
 | Dune | Usa eventos de escrow/anuncios como fonte analitica | Definir queries ou export minimo de metricas |
 | Jupiter | Pode entrar como extensao de quote/swap | Nao misturar se atrasar a demo P0 |
