@@ -41,7 +41,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | --- | --- | --- |
 | Core compartilhado | baseline documented | matriz de envs + extracao modular |
 | Tether | ready for promotion decision | decisao de promocao para `teste` |
-| Cloak | standby curto ate baseline | `inc-01-privacy-metadata-audit` |
+| Cloak | implementing | evidencia visual + smoke metadata |
 | Superteam Brasil | standby curto ate demo base | `inc-01-demo-script-and-seed-checklist` |
 
 ## Regras ativas para os proximos PRs
@@ -62,6 +62,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Tether stablecoin mint resolution | `p2ploot-backend` | `track-inc/tether-usdt-escrow/02-usdt-mint-resolution` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Tether USDT demo seed | `p2ploot-backend` | `track-inc/tether-usdt-escrow/03-usdt-demo-seed` | `track/tether-usdt-escrow` | integrado localmente na branch especial |
 | Core baseline/env/status | root docs | `track-inc/superteam-core/01-baseline-env-status` | `track/superteam-core` | documentado no root |
+| Cloak privacy metadata audit | `p2ploot-backend` + root docs | `track-inc/cloak-private-checkout/01-privacy-metadata-audit` | `track/cloak-private-checkout` | integrado localmente na branch especial |
 
 Validacao do incremento core baseline:
 
@@ -74,6 +75,17 @@ Validacao do incremento core baseline:
 - `VITE_API_URL=http://localhost:6110 npm run build` no frontend core: passou.
 - `npm run build` no backend core: passou.
 - Avisos conhecidos: Rollup remove anotacoes `/*#__PURE__*/` de dependencias `@privy-io/react-auth`/`ox`; backend avisou fallback JS de `bigint`. Nenhum bloqueou build.
+
+Validacao do incremento Cloak privacy metadata:
+
+- Auditoria registrada em `docs/hackathon-superteam/CLOAK_PRIVACY_METADATA_AUDIT.md`.
+- Backend ja tinha endpoint `GET /api/web3/privacy/status` com modo `privacy_intent_ready`.
+- Backend ja mascarava comprador privado para vendedor em `GET /api/ads/[id]/conversation`.
+- Frontend ja mascarava vendedor/comprador via `Vendedor privado via Cloak` e `Comprador privado via Cloak`.
+- Ajuste aplicado no backend: `metadata.cloakPrivacy` do escrow agora guarda somente campos operacionais minimos, deixando docs/config no endpoint de status.
+- `npm run build` no backend Cloak: passou.
+- Aviso conhecido: fallback JS de `bigint`; nao bloqueou build.
+- Validacoes finais pendentes: smoke/roteiro criando escrow com `metadata.cloakPrivacy.enabled: true` e evidencia visual.
 
 Validacao do incremento frontend Tether:
 
