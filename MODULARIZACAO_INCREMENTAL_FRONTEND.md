@@ -737,28 +737,105 @@ Resultado visual:
 - Nenhuma mudança em contratos `api.*`.
 - Nenhuma mudança nas rotas de `Web3Games`.
 
+## Incremento 8 concluído: página de blockchain
+
+### Resumo
+
+`BlockchainDetailsPage.jsx` foi modularizado em componentes visuais e hook dedicado para jogos relacionados.
+
+A página agora fica focada em localizar a blockchain, compor as regiões da tela e controlar navegação, enquanto busca de jogos relacionados e blocos visuais ficam isolados.
+
+### Componentes e módulos criados
+
+- `src/components/Web3Games/components/BlockchainHero.jsx`
+  - imagem de fundo;
+  - botão voltar;
+  - badges de token/tipo;
+  - título e link para site oficial.
+
+- `src/components/Web3Games/components/BlockchainInfoCard.jsx`
+  - descrição da rede;
+  - consenso;
+  - foco principal.
+
+- `src/components/Web3Games/components/RelatedGamesGrid.jsx`
+  - título da seção de jogos do ecossistema;
+  - grid/lista de jogos relacionados;
+  - empty state;
+  - ação de edição para perfis com permissão.
+
+- `src/components/Web3Games/hooks/useBlockchainRelatedGames.js`
+  - busca jogos via `api.getGames()`;
+  - filtra por blockchain;
+  - normaliza com `mapApiGameToRelatedGame`.
+
+### Arquivos modificados
+
+- `src/components/Web3Games/BlockchainDetailsPage.jsx`
+  - passou a compor os novos componentes;
+  - manteve fallback de blockchain não encontrada;
+  - preservou navegação para catálogo e detalhes de jogo.
+
+### Commits do incremento
+
+- `refactor(web3games): extract blockchain details sections` (`24bdf92`)
+
+### Validação
+
+- `git diff --check` executado com sucesso.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: página de detalhes de blockchain (`BlockchainDetailsPage`).
+- Rota: `/pt/games/blockchain/Open%20Loot`.
+- Fonte do antes: branch `feat/web3games-blockchain-page-increment-8` antes da extração.
+- Fonte do depois: working tree atual após a extração do Incremento 8.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: blockchain local `Open Loot`; jogos relacionados em empty state.
+- Viewports: desktop `1440x1400` e mobile `390x1400`.
+- Estados capturados: hero da blockchain, info card e seção de jogos relacionados.
+
+Prints:
+
+#### Antes — desktop
+
+![Incremento 8 - blockchain antes desktop](docs/evidencias/frontend/incremento-8-blockchain-page/antes-blockchain-page-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 8 - blockchain depois desktop](docs/evidencias/frontend/incremento-8-blockchain-page/depois-blockchain-page-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 8 - blockchain antes mobile](docs/evidencias/frontend/incremento-8-blockchain-page/antes-blockchain-page-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 8 - blockchain depois mobile](docs/evidencias/frontend/incremento-8-blockchain-page/depois-blockchain-page-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre hero, info card e empty state de jogos relacionados em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+
 ## Próximos incrementos recomendados
 
-### Incremento 8: página de blockchain
-
-Motivo: `BlockchainDetailsPage.jsx` já está menor, mas pode ser mais modular.
-
-Extrações recomendadas:
-
-- `components/BlockchainHero.jsx`
-- `components/BlockchainInfoCard.jsx`
-- `components/RelatedGamesGrid.jsx`
-- `hooks/useBlockchainRelatedGames.js`
-
-Critério de sucesso:
-
-- Página com menos lógica inline.
-- Reuso de card/lista para jogos relacionados, se fizer sentido.
+Após estabilizar os incrementos de `Web3Games`, reavaliar outros P0 do relatório original.
 
 ## Ordem sugerida de execução
 
-1. Modularizar blocos menores da página de blockchain.
-2. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
+1. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
 
 ## Checklist por incremento
 
