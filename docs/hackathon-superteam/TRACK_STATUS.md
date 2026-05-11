@@ -19,6 +19,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Tether | `track/tether-usdt-escrow` | `track/tether-usdt-escrow` | criada localmente |
 | Cloak | `track/cloak-private-checkout` | `track/cloak-private-checkout` | criada localmente |
 | Superteam Brasil | `track/superteam-brasil-demo` | `track/superteam-brasil-demo` | criada localmente |
+| RPC live checkout | `track/solana-rpc-live-checkout` | `track/solana-rpc-live-checkout` | criada localmente |
 
 ## Ordem inicial de aplicacao
 
@@ -43,6 +44,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Tether | ready for promotion decision | decisao de promocao para `teste` |
 | Cloak | ready for promotion decision | decisao de promocao ou standby |
 | Superteam Brasil | ready for demo review | decisao de promocao ou standby |
+| RPC live checkout | implementing | evidencia visual do chip RPC + decisao Birdeye/Solflare |
 
 ## Regras ativas para os proximos PRs
 
@@ -66,6 +68,8 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Cloak privacy metadata smoke | `p2ploot-backend` | `track-inc/cloak-private-checkout/02-privacy-metadata-smoke` | `track/cloak-private-checkout` | integrado localmente na branch especial |
 | Cloak private checkout evidence | root docs/evidencias | `track-inc/cloak-private-checkout/03-visual-evidence` | `track/cloak-private-checkout` | documentado no root |
 | Superteam Brasil demo package | root docs | `track-inc/superteam-brasil-demo/01-demo-script-and-seed-checklist` | `track/superteam-brasil-demo` | documentado no root |
+| RPC health status | `p2ploot-backend` | `track-inc/solana-rpc-live-checkout/01-rpc-health-status` | `track/solana-rpc-live-checkout` | integrado localmente na branch especial |
+| Checkout RPC health chip | `p2ploot-frontend` | `track-inc/solana-rpc-live-checkout/01-technical-checkout-rpc-chip` | `track/solana-rpc-live-checkout` | integrado localmente na branch especial |
 
 Validacao do incremento core baseline:
 
@@ -137,6 +141,33 @@ Pendente antes de abrir PR da branch especial para `teste`:
 - Confirmar ambiente final de demo/deploy.
 - Rodar o roteiro fim a fim no ambiente final escolhido.
 - Decidir se Superteam Brasil entra em `teste` como pacote de demo ou se fica em standby apos a submissao.
+
+## Gate atual da track RPC live checkout
+
+Cumprido:
+
+- Branches especiais `track/solana-rpc-live-checkout` criadas nos subrepos.
+- Backend expoe `solana.rpcHealth` em `GET /api/web3/status` com versao, slot e latencia.
+- Backend marca `solana_rpc_health_failed` em readiness quando RPC configurado falha.
+- Script `npm run web3:status` falha se o RPC configurado nao estiver saudavel.
+- Frontend mostra chip de RPC/host/latencia no painel tecnico do checkout.
+- Link de Solana Explorer existente continua disponivel no ultimo evento do escrow quando ha assinatura.
+- Auditoria registrada em `docs/hackathon-superteam/RPC_LIVE_STATUS_AUDIT.md`.
+
+Validacoes:
+
+- Backend `git diff --check`: passou.
+- Backend `node --check scripts/check-web3-status.js`: passou.
+- Backend `npm run build`: passou.
+- Frontend `git diff --check`: passou.
+- Frontend `VITE_API_URL=http://localhost:6110 npm run build`: passou.
+- Check vivo `API_BASE=http://localhost:6110 npm run web3:status`: passou com `rpcHealth.ok: true`.
+
+Pendente antes de abrir PR da branch especial para `teste`:
+
+- Capturar evidencia visual desktop/mobile do chip RPC no checkout.
+- Decidir se Birdeye quote entra nesta track ou fica como incremento separado.
+- Validar/instruir Solflare explicitamente no pacote de submissao, sem trocar a camada de wallet agora.
 
 Validacao do incremento frontend Tether:
 
