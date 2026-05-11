@@ -40,7 +40,7 @@ As branches foram criadas a partir de `origin/teste`, conforme o plano de govern
 | Track | Status | Proximo incremento recomendado |
 | --- | --- | --- |
 | Core compartilhado | implementing | `inc-01-baseline-env-status` |
-| Tether | implementing | evidencia visual + smoke `USDT` com backend local |
+| Tether | implementing | evidencia visual desktop/mobile + decisao de promocao |
 | Cloak | standby curto ate baseline | `inc-01-privacy-metadata-audit` |
 | Superteam Brasil | standby curto ate demo base | `inc-01-demo-script-and-seed-checklist` |
 
@@ -74,13 +74,20 @@ Validacao do incremento backend Tether:
 - `node --check scripts/smoke-web3.js`: passou.
 - `node --check scripts/smoke-web3-tether.js`: passou.
 - Parse de `package.json`: passou.
-- Smoke real `npm run smoke:web3:tether`: pendente porque exige backend local ativo em `API_BASE`.
+- Smoke real `npm run smoke:web3:tether`: passou com backend local ativo em `http://localhost:6110`.
 
 Validacao do incremento backend de stablecoin mint:
 
 - `git diff --check` no backend: passou.
 - `npm run build` no backend: passou apos restaurar dependencias locais com `npm install`.
 - Avisos conhecidos: `npm install` reportou vulnerabilidades no grafo existente e o build avisou que `bigint` usou fallback JS puro; nenhum bloqueou a build.
+
+Validacao smoke real Tether:
+
+- Migracoes locais aplicadas com `npx prisma migrate deploy` antes do smoke, incluindo Web3 escrow, link Privy profile, delivery window e Cloak privacy.
+- `npm run smoke:web3:tether` passou usando `currencySymbol: USDT`.
+- O smoke validou caminhos de release, refund e cancelamento com `assetMint` resolvido para `Es9vMFrzaCERmJfrF4H2FYD4jU7VvSksQ88BNTc1NfQ`.
+- Backend local foi encerrado apos a validacao.
 
 ## Gate atual da track Tether
 
@@ -90,11 +97,11 @@ Cumprido:
 - Backend aceita e assertivamente testa `currencySymbol: USDT` no caminho smoke parametrizado.
 - Backend resolve `assetMint` por moeda/rede quando o checkout cria escrow sem mint explicito.
 - `.env.example` documenta mints `USDC`/`USDT` por devnet/mainnet, deixando devnet USDT configuravel.
+- Smoke real `npm run smoke:web3:tether` passou contra backend local depois de aplicar migracoes pendentes.
 - Branches especiais locais de frontend e backend foram atualizadas com os incrementos validados.
 
 Pendente antes de marcar `guaranteed`:
 
-- Rodar smoke real com backend local e dados seedados: `npm run smoke:web3:tether`.
 - Capturar evidencia visual desktop/mobile do checkout de anuncio `USDT`.
 - Configurar `SOLANA_DEVNET_USDT_MINT` com mint de demo/teste se a submissao Tether for demonstrada em devnet com SPL token real.
 - Confirmar se a submissao Tether deve ficar em demo/devnet ou seguir para PR de promocao a `teste`.
