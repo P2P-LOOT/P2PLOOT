@@ -652,21 +652,92 @@ Resultado visual:
 - Nenhuma mudança nas rotas de `Web3Games`.
 - Nenhuma mudança esperada nas props públicas de `CommentItem`.
 
+## Incremento 7 concluído: hero e dados técnicos de detalhes
+
+### Resumo
+
+`GameDetailsPage.jsx` foi reduzido novamente para compor regiões de alto nível da página de detalhes.
+
+O hero, a seção "sobre" e o card de dados técnicos foram extraídos para componentes visuais dedicados, mantendo carregamento de dados, comentários, permissões e navegação no container da página.
+
+### Componentes criados
+
+- `src/components/Web3Games/components/GameDetailsHero.jsx`
+  - imagem de fundo;
+  - botão voltar;
+  - badges de status/modo;
+  - título, gênero, blockchain e ações principais.
+
+- `src/components/Web3Games/components/GameAboutSection.jsx`
+  - descrição curta;
+  - bloco `Deep Dive`;
+  - título da seção "sobre".
+
+- `src/components/Web3Games/components/GameTechnicalDataCard.jsx`
+  - modo, gênero, blockchain, plataforma, status, NFT info e token;
+  - regiões e servidores;
+  - requisitos do jogo.
+
+### Arquivos modificados
+
+- `src/components/Web3Games/GameDetailsPage.jsx`
+  - passou a compor os novos componentes visuais;
+  - manteve busca de jogo, hook de comentários, permissões e handlers principais.
+
+### Commits do incremento
+
+- `refactor(web3games): extract game details layout sections` (`85edc31`)
+
+### Validação
+
+- `git diff --check` executado com sucesso.
+- `VITE_API_URL=http://localhost:6110 npm run build` executado com sucesso.
+- Lints do IDE sem erros nos arquivos alterados.
+
+### Evidências visuais
+
+Status: documentado com comparação antes/depois em desktop e mobile.
+
+Contexto validado:
+
+- Área: página de detalhes de jogo (`GameDetailsPage`), hero, seção sobre e card técnico.
+- Rota: `/pt/games/game/db-4`.
+- Fonte do antes: branch `feat/web3games-details-layout-increment-7` antes da extração visual.
+- Fonte do depois: working tree atual após a extração do Incremento 7.
+- Perfil/usuário: visitante não autenticado.
+- Dados usados: jogo retornado por `/api/games` com id `4`.
+- Viewports: desktop `1440x2200` e mobile `390x2200`.
+- Estados capturados: página de detalhes incluindo hero, conteúdo, sidebar técnica e seção de comentários.
+
+Prints:
+
+#### Antes — desktop
+
+![Incremento 7 - detalhes antes desktop](docs/evidencias/frontend/incremento-7-game-details-layout/antes-game-details-layout-desktop.png)
+
+#### Depois — desktop
+
+![Incremento 7 - detalhes depois desktop](docs/evidencias/frontend/incremento-7-game-details-layout/depois-game-details-layout-desktop.png)
+
+#### Antes — mobile
+
+![Incremento 7 - detalhes antes mobile](docs/evidencias/frontend/incremento-7-game-details-layout/antes-game-details-layout-mobile.png)
+
+#### Depois — mobile
+
+![Incremento 7 - detalhes depois mobile](docs/evidencias/frontend/incremento-7-game-details-layout/depois-game-details-layout-mobile.png)
+
+Resultado visual:
+
+- Preservado sem mudança visual esperada.
+- A comparação cobre a equivalência do hero, conteúdo principal, dados técnicos e comentários em desktop e mobile.
+
+### Contratos preservados
+
+- Nenhuma mudança em contratos `api.*`.
+- Nenhuma mudança nas rotas de `Web3Games`.
+
 ## Próximos incrementos recomendados
-
-### Incremento 7: dados técnicos e hero de detalhes
-
-Motivo: a página de detalhes ainda possui blocos visuais grandes.
-
-Extrações recomendadas:
-
-- `components/GameDetailsHero.jsx`
-- `components/GameTechnicalDataCard.jsx`
-- `components/GameAboutSection.jsx`
-
-Critério de sucesso:
-
-- Cada componente representar uma região clara da tela.
 
 ### Incremento 8: página de blockchain
 
@@ -686,9 +757,8 @@ Critério de sucesso:
 
 ## Ordem sugerida de execução
 
-1. Modularizar hero/dados técnicos da página de detalhes.
-2. Modularizar blocos menores da página de blockchain.
-3. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
+1. Modularizar blocos menores da página de blockchain.
+2. Reavaliar outros P0 do relatório original após estabilizar `Web3Games`.
 
 ## Checklist por incremento
 
