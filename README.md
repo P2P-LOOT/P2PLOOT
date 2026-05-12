@@ -14,5 +14,3 @@ Este repositório funciona como ponto central do projeto P2P Loot na organizaç�
 ## Organização temporária
 
 Frontend e backend permanecem em repositórios separados enquanto a migração para a organização `P2P-LOOT` não é concluída.
-
-Quando a migração for possível, atualize os links acima para os novos repositórios da organização.
