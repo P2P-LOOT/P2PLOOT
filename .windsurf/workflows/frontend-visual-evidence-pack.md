@@ -157,7 +157,7 @@ Classificar o resultado como:
 Adicionar seção de evidência no incremento correspondente em:
 
 ```text
-/home/ci/Desktop/Projetos/P2PLOOT/MODULARIZACAO_INCREMENTAL_FRONTEND.md
+/home/ci/Desktop/Projetos/P2PLOOT/docs/MODULARIZACAO_INCREMENTAL_FRONTEND.md
 ```
 
 Template:
