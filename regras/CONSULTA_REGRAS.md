@@ -121,7 +121,7 @@ docs: update frontend modularization increment 2
 Ao concluir incremento de modularização frontend, atualizar:
 
 ```text
-MODULARIZACAO_INCREMENTAL_FRONTEND.md
+docs/MODULARIZACAO_INCREMENTAL_FRONTEND.md
 ```
 
 A atualização deve incluir:
@@ -151,7 +151,7 @@ Regra:
 
 Como aplicar:
 
-- Consultar `PLANO_GOVERNANCA_BRANCHES_TRACKS_SUPERTEAM.md`.
+- Consultar `docs/PLANO_GOVERNANCA_BRANCHES_TRACKS_SUPERTEAM.md`.
 - Usar o workflow `.windsurf/workflows/superteam-track-branch-governance.md`.
 - Para mudanças frontend/UX, aplicar também os workflows de preflight, evidência visual e review bundle.
 - Registrar no PR o status final da track: `implementing`, `ready-for-track-review`, `guaranteed`, `promoted-to-teste` ou `standby`.
