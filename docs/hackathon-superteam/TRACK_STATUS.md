@@ -266,6 +266,6 @@ Pendente antes de abrir PR da branch especial para `teste`:
 ## Observacoes de preflight
 
 - O repositorio raiz nao possui branch `teste`; os subrepos `p2ploot-frontend` e `p2ploot-backend` possuem `origin/teste`.
-- O repositorio raiz ja tinha alteracao local em `PLANO_IMPLEMENTACAO_TRACKS_SUPERTEAM.md` antes da aplicacao deste passo.
+- O repositorio raiz ja tinha alteracao local em `docs/PLANO_IMPLEMENTACAO_TRACKS_SUPERTEAM.md` antes da aplicacao deste passo.
 - O backend ja contem rotas e smoke tests Web3 para escrow.
 - O frontend ja contem `USDT` em pontos do PlayerMarket, mas ainda precisa auditoria de ponta a ponta antes de marcar Tether como garantida.

@@ -28,7 +28,7 @@ Garantir que cada track tenha branch especial propria, PRs incrementais pequenos
 2. Consultar o plano de governanca:
 
 ```text
-/home/ci/Desktop/Projetos/P2PLOOT/PLANO_GOVERNANCA_BRANCHES_TRACKS_SUPERTEAM.md
+/home/ci/Desktop/Projetos/P2PLOOT/docs/PLANO_GOVERNANCA_BRANCHES_TRACKS_SUPERTEAM.md
 ```
 
 3. Verificar estado Git dos repositorios afetados:

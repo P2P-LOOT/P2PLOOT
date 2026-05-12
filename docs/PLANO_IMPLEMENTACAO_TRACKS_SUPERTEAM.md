@@ -31,34 +31,30 @@ Essa tese permite aplicar o mesmo fluxo central em várias submissões:
 Antes de criar features isoladas para cada track, implementar um núcleo comum:
 
 1. **Checkout Web3 unificado**
-   - Seleção de moeda: `USDC`, `USDT`, `SOL` e, depois, “qualquer token via Jupiter”.
-   - Conexão com wallet Solana.
-   - Cotação, taxa da plataforma, taxa de privacidade e total final.
-   - Criação de transação e confirmação on-chain.
-
+  - Seleção de moeda: `USDC`, `USDT`, `SOL` e, depois, “qualquer token via Jupiter”.
+  - Conexão com wallet Solana.
+  - Cotação, taxa da plataforma, taxa de privacidade e total final.
+  - Criação de transação e confirmação on-chain.
 2. **Escrow de marketplace**
-   - Estados claros: `draft`, `initialized`, `funded`, `seller_confirmed`, `released`, `refund_requested`, `refunded`, `cancelled`, `disputed`.
-   - Registro de eventos por transação.
-   - Links para explorer.
-   - Fluxo de liberação, reembolso e disputa.
-
+  - Estados claros: `draft`, `initialized`, `funded`, `seller_confirmed`, `released`, `refund_requested`, `refunded`, `cancelled`, `disputed`.
+  - Registro de eventos por transação.
+  - Links para explorer.
+  - Fluxo de liberação, reembolso e disputa.
 3. **Camada de privacidade**
-   - Toggle de privacidade do vendedor no anúncio.
-   - Toggle de privacidade do comprador no checkout.
-   - Mascaramento de wallet em UI pública.
-   - Metadata mínima no escrow.
-   - Integração Cloak ou equivalente para pagamento privado.
-
+  - Toggle de privacidade do vendedor no anúncio.
+  - Toggle de privacidade do comprador no checkout.
+  - Mascaramento de wallet em UI pública.
+  - Metadata mínima no escrow.
+  - Integração Cloak ou equivalente para pagamento privado.
 4. **Infraestrutura on-chain confiável**
-   - RPC configurável por ambiente.
-   - Healthcheck de RPC.
-   - Confirmação de transação com retry.
-   - Registro de falhas e status técnico.
-
+  - RPC configurável por ambiente.
+  - Healthcheck de RPC.
+  - Confirmação de transação com retry.
+  - Registro de falhas e status técnico.
 5. **Analytics e evidência para submissão**
-   - Eventos on-chain ou indexáveis.
-   - Métricas: volume, número de escrows, taxa de conclusão, tempo médio de entrega, disputas e wallets ativas.
-   - Dashboard ou relatório público.
+  - Eventos on-chain ou indexáveis.
+  - Métricas: volume, número de escrows, taxa de conclusão, tempo médio de entrega, disputas e wallets ativas.
+  - Dashboard ou relatório público.
 
 ### 2.2. Não concentrar tudo no modal de anúncio
 
@@ -480,22 +476,24 @@ Sugestão de módulos futuros:
 
 ## 4. Plano por track
 
-| Track | MVP mínimo para aplicar | Features prioritárias | Demo ideal | Prioridade |
-|---|---|---|---|---|
-| **Cloak Track** | Compra segura com privacidade no pagamento. | Toggle de privacidade, metadata mínima, mascaramento de wallet, taxa de privacidade, integração Cloak. | Comprar item gamer sem expor wallet pública do vendedor/comprador. | **P0** |
-| **Tether Frontier Hackathon Track** | Checkout/escrow em USDT. | Suporte a USDT, SPL Token, saldo, mint por rede, confirmação on-chain. | Comprar item com USDT e liberar pagamento ao vendedor. | **P0** |
-| **Side Track Superteam Brasil** | Produto full-stack demonstrável com caso brasileiro. | Fluxo completo, PT-BR, seed/demo, pitch, vídeo, estabilidade. | Marketplace gamer brasileiro com compra segura em stablecoin. | **P0** |
-| **Privacy Track — MagicBlock/ST MY/SNS** | Privacidade aplicada a identidade/pagamento. | Alias, wallet mascarada, metadata mínima, UX privada, possível SNS/MagicBlock após validar docs. | Negociação privada com compra segura. | **P1** |
-| **Eitherway/Solflare/QuickNode/Birdeye** | DApp live usando wallet/RPC/dados. | Solflare, RPC configurável, Birdeye quotes, status técnico. | Checkout live com Solflare e confirmação via RPC. | **P1** |
-| **RPC Fast** | Uso claro de RPC para confirmar transações. | RPC provider, healthcheck, retry, explorer links, logs de confirmação. | Pagamento confirmado de forma confiável na devnet/mainnet. | **P1** |
-| **100xDevs** | Produto full-stack completo e polido. | Marketplace, auth, chat, escrow, disputa, UX, documentação. | Fluxo ponta a ponta com comprador e vendedor. | **P1** |
-| **Adevar Labs** | Projeto auditável com escrow/pagamento. | Threat model, invariantes, testes, escopo, documentação técnica. | Pacote de auditoria do escrow Web3. | **P1** |
-| **Jupiter** | Pagar com qualquer token e liquidar em stablecoin. | Quote, swap, slippage, token list, swap + escrow. | Comprador paga com token alternativo; vendedor recebe USDT/USDC. | **P2** |
-| **Dune Analytics** | Dashboard de métricas on-chain. | Eventos indexáveis, queries, GMV, escrows, disputas, volume por jogo. | Dashboard público mostrando saúde do marketplace. | **P2** |
-| **KIRAPAY** | Checkout alternativo por KIRAPAY. | Payment link, callback, status mapping, comprovante. | Pagamento por KIRAPAY vira escrow funded. | **P2** |
-| **theMiracle** | Benefício in-wallet. | Cupom/taxa zero, regra de elegibilidade, campanha. | Wallet recebe/ativa benefício para primeira compra. | **P3** |
-| **Zerion CLI** | Agente on-chain de monitoramento. | Monitor de escrow, alertas, resumo de disputa. | Agente avisa sobre pagamento, prazo e próximos passos. | **P3** |
-| **SagaPad** | Agente de growth para X. | Conteúdo automático, threads, calendário, respostas. | Agente gera campanha pública do P2P LOOT. | **P3** |
+
+| Track                                    | MVP mínimo para aplicar                              | Features prioritárias                                                                                  | Demo ideal                                                         | Prioridade |
+| ---------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------- |
+| **Cloak Track**                          | Compra segura com privacidade no pagamento.          | Toggle de privacidade, metadata mínima, mascaramento de wallet, taxa de privacidade, integração Cloak. | Comprar item gamer sem expor wallet pública do vendedor/comprador. | **P0**     |
+| **Tether Frontier Hackathon Track**      | Checkout/escrow em USDT.                             | Suporte a USDT, SPL Token, saldo, mint por rede, confirmação on-chain.                                 | Comprar item com USDT e liberar pagamento ao vendedor.             | **P0**     |
+| **Side Track Superteam Brasil**          | Produto full-stack demonstrável com caso brasileiro. | Fluxo completo, PT-BR, seed/demo, pitch, vídeo, estabilidade.                                          | Marketplace gamer brasileiro com compra segura em stablecoin.      | **P0**     |
+| **Privacy Track — MagicBlock/ST MY/SNS** | Privacidade aplicada a identidade/pagamento.         | Alias, wallet mascarada, metadata mínima, UX privada, possível SNS/MagicBlock após validar docs.       | Negociação privada com compra segura.                              | **P1**     |
+| **Eitherway/Solflare/QuickNode/Birdeye** | DApp live usando wallet/RPC/dados.                   | Solflare, RPC configurável, Birdeye quotes, status técnico.                                            | Checkout live com Solflare e confirmação via RPC.                  | **P1**     |
+| **RPC Fast**                             | Uso claro de RPC para confirmar transações.          | RPC provider, healthcheck, retry, explorer links, logs de confirmação.                                 | Pagamento confirmado de forma confiável na devnet/mainnet.         | **P1**     |
+| **100xDevs**                             | Produto full-stack completo e polido.                | Marketplace, auth, chat, escrow, disputa, UX, documentação.                                            | Fluxo ponta a ponta com comprador e vendedor.                      | **P1**     |
+| **Adevar Labs**                          | Projeto auditável com escrow/pagamento.              | Threat model, invariantes, testes, escopo, documentação técnica.                                       | Pacote de auditoria do escrow Web3.                                | **P1**     |
+| **Jupiter**                              | Pagar com qualquer token e liquidar em stablecoin.   | Quote, swap, slippage, token list, swap + escrow.                                                      | Comprador paga com token alternativo; vendedor recebe USDT/USDC.   | **P2**     |
+| **Dune Analytics**                       | Dashboard de métricas on-chain.                      | Eventos indexáveis, queries, GMV, escrows, disputas, volume por jogo.                                  | Dashboard público mostrando saúde do marketplace.                  | **P2**     |
+| **KIRAPAY**                              | Checkout alternativo por KIRAPAY.                    | Payment link, callback, status mapping, comprovante.                                                   | Pagamento por KIRAPAY vira escrow funded.                          | **P2**     |
+| **theMiracle**                           | Benefício in-wallet.                                 | Cupom/taxa zero, regra de elegibilidade, campanha.                                                     | Wallet recebe/ativa benefício para primeira compra.                | **P3**     |
+| **Zerion CLI**                           | Agente on-chain de monitoramento.                    | Monitor de escrow, alertas, resumo de disputa.                                                         | Agente avisa sobre pagamento, prazo e próximos passos.             | **P3**     |
+| **SagaPad**                              | Agente de growth para X.                             | Conteúdo automático, threads, calendário, respostas.                                                   | Agente gera campanha pública do P2P LOOT.                          | **P3**     |
+
 
 ---
 

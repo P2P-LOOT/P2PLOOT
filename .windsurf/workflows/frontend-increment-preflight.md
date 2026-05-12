@@ -20,7 +20,7 @@ Garantir que o agente comece com contexto suficiente, escopo pequeno, proteção
 2. Consultar o plano incremental quando a tarefa envolver modularização frontend:
 
 ```text
-/home/ci/Desktop/Projetos/P2PLOOT/MODULARIZACAO_INCREMENTAL_FRONTEND.md
+/home/ci/Desktop/Projetos/P2PLOOT/docs/MODULARIZACAO_INCREMENTAL_FRONTEND.md
 ```
 
 3. Verificar o estado do repositório raiz:

@@ -136,7 +136,7 @@ docs/evidencias/frontend/incremento-N-nome-curto/
 10. Atualizar documentação incremental quando o trabalho fizer parte da modularização frontend:
 
 ```text
-/home/ci/Desktop/Projetos/P2PLOOT/MODULARIZACAO_INCREMENTAL_FRONTEND.md
+/home/ci/Desktop/Projetos/P2PLOOT/docs/MODULARIZACAO_INCREMENTAL_FRONTEND.md
 ```
 
 A seção deve incluir:
@@ -217,6 +217,6 @@ Template recomendado:
 - Arquivos fora do escopo foram evitados ou justificados.
 - Contratos de API/props/exports foram preservados ou mudança foi explicitamente aprovada.
 - Evidências visuais estão documentadas quando aplicável.
-- `MODULARIZACAO_INCREMENTAL_FRONTEND.md` foi atualizado quando necessário.
+- `docs/MODULARIZACAO_INCREMENTAL_FRONTEND.md` foi atualizado quando necessário.
 - Commit segue Conventional Commits.
 - PR aponta para a branch correta, geralmente `teste` no frontend.
